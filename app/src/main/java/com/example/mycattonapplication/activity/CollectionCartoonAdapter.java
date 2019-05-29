@@ -26,7 +26,7 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<CollectionCar
     private List<Cartoon> cartoon_list = null;
 
 
-    public CollectionCartoonAdapter(Context context,List<Cartoon> cartoon_list){
+    public CollectionCartoonAdapter(List<Cartoon> cartoon_list){
         this.cartoon_list = cartoon_list;
     }
 

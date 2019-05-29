@@ -37,7 +37,7 @@ public class CollectionFragment extends Fragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.collection_recycle_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context,1);
         recyclerView.setLayoutManager(gridLayoutManager);
-        cartoonAdapter = new CollectionCartoonAdapter(context,item_list);
+        cartoonAdapter = new CollectionCartoonAdapter(item_list);
         recyclerView.setAdapter(cartoonAdapter);
     }
 
