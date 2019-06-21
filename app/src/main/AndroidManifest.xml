@@ -12,18 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.WordShowActivity"></activity>
-        <activity android:name=".activity.CartoonDetailActivity" />
-        <activity android:name=".activity.CategoryDetailActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.search.SearchActivity"></activity>
+        <activity
+            android:name=".activity.start.StartActivity"
+            android:label="@string/title_activity_start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.wordShow.WordShowActivity" />
+        <activity android:name=".activity.cartoonDetail.CartoonDetailActivity" />
+        <activity android:name=".activity.categoryDetail.CategoryDetailActivity" />
+        <activity android:name=".activity.login.RegisterActivity" />
+        <activity android:name=".activity.login.LoginActivity"></activity>
+        <activity android:name=".activity.home.MainActivity" />
     </application>
 
 </manifest>
