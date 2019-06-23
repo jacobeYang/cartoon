@@ -78,23 +78,23 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
                 break;
             case R.id.search_cartoon_1:
-                intentToSearchResult.putExtra("name",searchText);
+                intentToSearchResult.putExtra("name",tv__search_cartoon_1.getText());
                 startActivity(intentToSearchResult);
                 break;
             case R.id.search_cartoon_2:
-                intentToSearchResult.putExtra("name",searchText);
+                intentToSearchResult.putExtra("name",tv__search_cartoon_2.getText());
                 startActivity(intentToSearchResult);
                 break;
             case R.id.search_cartoon_3:
-                intentToSearchResult.putExtra("name",searchText);
+                intentToSearchResult.putExtra("name",tv__search_cartoon_3.getText());
                 startActivity(intentToSearchResult);
                 break;
             case R.id.search_cartoon_4:
-                intentToSearchResult.putExtra("name",searchText);
+                intentToSearchResult.putExtra("name",tv__search_cartoon_4.getText());
                 startActivity(intentToSearchResult);
                 break;
             case R.id.search_cartoon_5:
-                intentToSearchResult.putExtra("name",searchText);
+                intentToSearchResult.putExtra("name",tv__search_cartoon_5.getText());
                 startActivity(intentToSearchResult);
                 break;
         }

@@ -31,7 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="简介："
-            android:textSize="@dimen/cartoon_brief"/>
+            android:textSize="@dimen/cartoon_brief"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
     </LinearLayout>
 

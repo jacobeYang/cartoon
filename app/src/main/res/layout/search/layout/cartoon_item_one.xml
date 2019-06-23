@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:hint="阿凡达阿按实际佛iis奥if决胜巅峰加大九分裤"
+                android:text="阿凡达阿按实际佛iis奥if决胜巅峰加大九分裤"
                 android:textSize="@dimen/cartoon_brief"/>
 
         </LinearLayout>

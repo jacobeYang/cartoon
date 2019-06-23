@@ -142,7 +142,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(myContext, CartoonDetailActivity.class);
-                    intent.putExtra("cartoon_id",cartoon.getId());
+                    intent.putExtra("cartoonId",cartoon.getId());
                     myContext.startActivity(intent);
                 }
             });
@@ -155,7 +155,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(myContext, CategoryDetailActivity.class);
-                    intent.putExtra("cartoon_id",headLine.getCategoryId());
+                    intent.putExtra("categoryId",headLine.getCategoryId());
+                    intent.putExtra("categoryName",headLine.getName());
                     myContext.startActivity(intent);
                 }
             });
@@ -168,7 +169,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(myContext, CategoryDetailActivity.class);
-                    intent.putExtra("cartoon_id",category.getCategoryId());
+                    intent.putExtra("categoryId",category.getCategoryId());
+                    intent.putExtra("categoryName",category.getCategory_name());
                     myContext.startActivity(intent);
                 }
             });
@@ -189,7 +191,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void OnBannerClick(int position) {
                     Intent intent = new Intent(myContext, CartoonDetailActivity.class);
-                    intent.putExtra("cartoon_id",position);
+                    intent.putExtra("cartoonId",position);
                     myContext.startActivity(intent);
                 }
             });
@@ -237,7 +239,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public int getSpanSize(int position) {
                     int type = getItemViewType(position);
-                    int number = position-5;
                     if(type == TYPE1_HEADLINE){
                         return 12;
                     }else if (type == TYPE1_CARTOON){//type == TYPE1_CartoonItem;
