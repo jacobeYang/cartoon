@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/my_cartoon_item_one"
+    android:id="@+id/cartoon_item_one"
+    >
+    <!--alpha="0"完全透明       alpha="1"完全不透明     alpha="0.5"-->
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/cartoon_item_one_image"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/a1"/>
+
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+       >
+
+        <TextView
+            android:id="@+id/cartoon_item_one_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="凤逆天下"
+            android:textSize="@dimen/cartoon_name"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="作者："
+                android:textSize="@dimen/cartoon_brief"/>
+            <TextView
+                android:id="@+id/cartoon_item_one_author"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="浪白吧"
+                android:textSize="@dimen/cartoon_brief"    /> 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="简介："
+                android:textSize="@dimen/cartoon_brief"/>
+            <TextView
+
+                android:id="@+id/cartoon_item_one_brief"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:hint="阿凡达阿按实际佛iis奥if决胜巅峰加大九分裤"
+                android:textSize="@dimen/cartoon_brief"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

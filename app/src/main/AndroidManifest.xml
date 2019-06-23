@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.search.SearchActivity"></activity>
+        <activity android:name=".activity.search.SearchResultActivity"></activity>
+        <activity android:name=".activity.search.SearchActivity" />
         <activity
             android:name=".activity.start.StartActivity"
             android:label="@string/title_activity_start">
@@ -26,7 +27,7 @@
         <activity android:name=".activity.cartoonDetail.CartoonDetailActivity" />
         <activity android:name=".activity.categoryDetail.CategoryDetailActivity" />
         <activity android:name=".activity.login.RegisterActivity" />
-        <activity android:name=".activity.login.LoginActivity"></activity>
+        <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.home.MainActivity" />
     </application>
 

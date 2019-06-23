@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="head_line_size">24dp</dimen>
+    <dimen name="head_line_more_size">18dp</dimen>
+    <dimen name="home_category_item">20dp</dimen>
+    <dimen name="cartoon_name">20dp</dimen>
+    <dimen name="cartoon_brief">14dp</dimen>
 </resources>

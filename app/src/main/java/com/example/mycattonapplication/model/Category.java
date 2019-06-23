@@ -1,8 +1,27 @@
 package com.example.mycattonapplication.model;
 
 public class Category {
-    String id;
-    String category_name;
+    private String id;
+    private String category_name;
+    private int iconId;
+    private int categoryId;
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getIconId() {
+        return iconId;
+    }
+
+    public void setIconId(int iconId) {
+        this.iconId = iconId;
+    }
+
 
     public String getId() {
         return id;

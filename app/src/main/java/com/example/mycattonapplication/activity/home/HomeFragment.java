@@ -10,15 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.mycattonapplication.R;
-import com.example.mycattonapplication.activity.cartoonDetail.CartoonDetailActivity;
-import com.example.mycattonapplication.utils.GlideImageLoader;
+import com.example.mycattonapplication.model.HeadLine;
+import com.example.mycattonapplication.model.MyBanner;
+import com.example.mycattonapplication.model.NotAnyMore;
 import com.example.mycattonapplication.activity.search.SearchActivity;
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.Category;
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerListener;
 
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
@@ -30,9 +28,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private View view;
     private Banner banner;
     private RecyclerView recyclerView;
-    private CartoonAdapter cartoonAdapter;
-    private List<Cartoon> item_list;
-    private List<Category> category_list;
+    private HomeAdapter homeAdapter;
+    private List<Object> list;
     private Context context;
     private ImageView search;
 
@@ -50,33 +47,51 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         search = (ImageView)view.findViewById(R.id.home_search);
         search.setOnClickListener(this);
 
-        //轮播
-        banner = (Banner)view.findViewById(R.id.banner);
-        setBanner();
-
         //漫画列表
         list_init();
         recyclerView = (RecyclerView)view.findViewById(R.id.main_recycle);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context,6);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context,12);
         recyclerView.setLayoutManager(gridLayoutManager);
-        cartoonAdapter = new CartoonAdapter(item_list,category_list,7);
-        recyclerView.setAdapter(cartoonAdapter);
+        homeAdapter = new HomeAdapter(list);
+        recyclerView.setAdapter(homeAdapter);
     }
 
 
     public void list_init(){
-        category_list = new ArrayList<Category>();
-        Category category1 = new Category();
-        category1.setCategory_name("类型一");
-        Category category2 = new Category();
-        category2.setCategory_name("类型Er");
-        Category category3 = new Category();
-        category3.setCategory_name("类SaN");
-        category_list.add(category1);
-        category_list.add(category2);
-        category_list.add(category3);
+        list = new ArrayList<Object>();
 
-        item_list = new ArrayList<Cartoon>();
+        MyBanner myBanner = new MyBanner();
+        Category category1 = new Category();
+        category1.setCategory_name("热血");
+        category1.setIconId(R.mipmap.icon1);
+        Category category2 = new Category();
+        category2.setCategory_name("玄幻");
+        category2.setIconId(R.mipmap.icon2);
+        Category category3 = new Category();
+        category3.setCategory_name("青春");
+        category3.setIconId(R.mipmap.icon3);
+        Category category4 = new Category();
+        category4.setCategory_name("都市");
+        category4.setIconId(R.mipmap.icon4);
+//        Category category5 = new Category();
+//        category5.setCategory_name("热血");
+//        category5.setIconId(R.mipmap.shield);
+//        Category category6 = new Category();
+//        category6.setCategory_name("热血");
+//        category6.setIconId(R.mipmap.shield);
+        HeadLine headLine1 = new HeadLine();
+        headLine1.setName("猜你喜欢");
+        headLine1.setMore("更多>>>");
+        HeadLine headLine2 = new HeadLine();
+        headLine2.setName("热门推荐");
+        headLine2.setMore("更多>>>");
+        HeadLine headLine3 = new HeadLine();
+        headLine3.setName("恋爱手册");
+        headLine3.setMore("更多>>>");
+        HeadLine headLine4 = new HeadLine();
+        headLine4.setName("异世魔神");
+        headLine4.setMore("更多>>>");
+
         Cartoon cartoon1 = new Cartoon();
         cartoon1.setImageId(R.mipmap.a1);
         cartoon1.setCartoon_name("漫画名");
@@ -90,54 +105,47 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         cartoon3.setCartoon_name("漫画名");
         cartoon3.setAuthor_name("作者名");
 
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-    }
+        list.add(myBanner);
+        list.add(category1);
+        list.add(category2);
+        list.add(category3);
+        list.add(category4);
+
+        list.add(headLine1);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+
+        list.add(headLine2);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+
+        list.add(headLine3);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+
+        list.add(headLine4);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+        list.add(cartoon1);
+        list.add(cartoon2);
+        list.add(cartoon3);
+
+        list.add(new NotAnyMore());
 
 
-    private void setBanner() {
-        //设置图片集合
-        List<Integer> imgs = new ArrayList<>();
-        imgs.add(R.mipmap.a1);
-        imgs.add(R.mipmap.a2);
-        imgs.add(R.mipmap.a3);
-        List<String> titles = new ArrayList<>();
-        titles.add("图片1");
-        titles.add("图片2");
-        titles.add("图片3");
-//      .setBannerTitles(titles)
-        banner.setImages(imgs).setBannerStyle(BannerConfig.CIRCLE_INDICATOR)//显示风格
-
-                .setDelayTime(4000)
-                .setBannerAnimation(Transformer.CubeIn)//轮播动画
-                .setImageLoader(new GlideImageLoader())
-                .setIndicatorGravity(BannerConfig.CENTER)//设置指示器位置（当banner模式中有指示器时）
-                .start();
-
-        banner.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
-                Intent intent = new Intent(context, CartoonDetailActivity.class);
-                intent.putExtra("cartoon_id",position);
-                context.startActivity(intent);
-            }
-        });
     }
 
 

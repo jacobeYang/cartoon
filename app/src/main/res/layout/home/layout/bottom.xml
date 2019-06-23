@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="60dp"
     android:id="@+id/main_bottom_layout"
-    android:layout_alignParentBottom="true">
+    android:layout_alignParentBottom="true"
+    android:gravity="center_vertical"
+    android:background="@color/my_background">
     <LinearLayout
         android:id="@+id/ll_home"
         android:layout_width="0dp"
