@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.search.SearchResultActivity"></activity>
+        <activity android:name=".activity.mine.UserInfoActivity"></activity>
+        <activity android:name=".activity.search.SearchResultActivity" />
         <activity android:name=".activity.search.SearchActivity" />
         <activity
             android:name=".activity.start.StartActivity"
@@ -29,6 +30,10 @@
         <activity android:name=".activity.login.RegisterActivity" />
         <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.home.MainActivity" />
+        <activity android:name=".activity.mine.CollectCartoonActivity"></activity>
+        <activity android:name=".activity.mine.LikeCartoonActivity"></activity>
+        <activity android:name=".activity.mine.RemarkCartoonActivity"></activity>
+        <activity android:name=".activity.mine.LookThroughCartoon"></activity>
     </application>
 
 </manifest>

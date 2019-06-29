@@ -5,13 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
-import com.example.mycattonapplication.activity.collection.CollectionCartoonAdapter;
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.NotAnyMore;
 
@@ -20,7 +18,7 @@ import java.util.List;
 
 public class CategoryDetailActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private CartoonDetailAdapter cartoonAdapter;
+    private CategoryDetailAdapter cartoonAdapter;
     private List<Object> item_list;
     private ImageView back;
     private TextView title;
@@ -50,7 +48,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
-        cartoonAdapter = new CartoonDetailAdapter(item_list);
+        cartoonAdapter = new CategoryDetailAdapter(item_list);
         recyclerView.setAdapter(cartoonAdapter);
 
         title.setText(intent_category_name);

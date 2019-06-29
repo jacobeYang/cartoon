@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/my_background"
     tools:context=".activity.login.RegisterActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,9 +19,10 @@
             android:layout_above="@id/register_edit_pwd"
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:hint="请输入注册手机号码"
             android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:textSize="20dp"
             android:gravity="center"/>
         <EditText
@@ -30,15 +31,15 @@
             android:background="@drawable/my_input_back"
             android:layout_above="@id/ll_check"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:hint="请输入密码"
+            android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
             android:textSize="20dp"
             android:gravity="center"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="30dp"/>
 
         <LinearLayout
-            android:inputType="textPassword"
             android:id="@+id/ll_check"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
@@ -49,7 +50,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/my_input_back"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"/>
+
             <Button
                 android:id="@+id/register_send_num"
                 android:layout_width="wrap_content"
@@ -57,6 +60,7 @@
                 android:background="@drawable/my_input_back"
                 android:layout_weight="1"
                 android:text="发送验证码"
+                android:textSize="20dp"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>
@@ -74,7 +78,7 @@
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
             android:text="注册"
             android:textColor="@android:color/white"
             android:textSize="25dp"/>

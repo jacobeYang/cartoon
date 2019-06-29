@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<!--图片、赞和收藏-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+        <ImageView
+            android:id="@+id/cartoon_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/a1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="330dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/cartoon_detail_cartoon_name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="漫画名"
+                android:textSize="28dp"
+                android:textColor="#FFFFFF"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="180dp"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/cartoon_detail_like"
+                    android:src="@mipmap/like1white"/>
+                <TextView
+                    android:id="@+id/detail_item_like_text"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:text="赞"
+                    android:textColor="#FF3366"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/cartoon_detail_collect"
+
+                    android:src="@mipmap/collectionwhite"/>
+                <TextView
+                    android:id="@+id/cartoon_detail_collect_text"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:text="收藏"
+                    android:textColor="#FF3366"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+<!--详情标签-->
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/my_cartoon_detail_label"
+        android:textColor="#FFFFFF"
+        android:text="详情"
+        android:textSize="20dp"
+        android:gravity="right|center_vertical"></TextView>
+
+<!--简介-->
+    <TextView
+        android:id="@+id/cartoon_detail_brief_introduction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="附近可达福，晶科技大富科技爱福。家安抚发酵的首付款，健身房大师框架的说法咔经典款解放军阿斯顿发货。"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:lineSpacingMultiplier="1.3"
+
+        />
+
+    //lineSpacingMultiplier   行间倍数
+<!--作者-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="作者"
+            android:textSize="28dp"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"/>
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/cartoon_detail_author_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/cartoon_detail_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="作则名"
+            android:textColor="#ffffff"
+            android:textSize="20dp"/>
+    </LinearLayout>
+
+<!--人物-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="人物"
+            android:textSize="28dp"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"/>
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/cartoon_detail_role2_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/cartoon_detail_role2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="人物名"
+            android:textColor="#ffffff"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/cartoon_detail_role1_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/cartoon_detail_role1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="人物名"
+            android:textColor="#ffffff"
+            android:textSize="20dp"/>
+    </LinearLayout>
+<!--评论标签-->
+<TextView
+    android:layout_width="70dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="20dp"
+    android:paddingRight="20dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/my_cartoon_detail_label"
+    android:textColor="#FFFFFF"
+    android:text="评论"
+    android:textSize="20dp"
+    android:gravity="right|center_vertical"></TextView>
+</LinearLayout>

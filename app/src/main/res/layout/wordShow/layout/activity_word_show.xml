@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.wordShow.WordShowActivity">
-<android.support.v7.widget.RecyclerView
+
+
+<com.example.mycattonapplication.utils.AutoPollRecyclerView
     android:id="@+id/word_show_recyclerView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-</LinearLayout>
+    android:layout_height="match_parent"></com.example.mycattonapplication.utils.AutoPollRecyclerView>
+
+
+    <!--下面的组件会覆盖在上面的组件上-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="20dp">
+        <ImageView
+            android:id="@+id/word_show_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/left_arrow_2"/>
+        <TextView
+            android:id="@+id/word_show_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="第一话  序章"
+            android:textSize="18dp"
+            android:textColor="@color/my_primary"
+            android:layout_marginRight="70dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</FrameLayout>

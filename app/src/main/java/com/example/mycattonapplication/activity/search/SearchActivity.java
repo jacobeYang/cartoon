@@ -74,8 +74,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.home_search_cancel:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
                 break;
             case R.id.search_cartoon_1:
                 intentToSearchResult.putExtra("name",tv__search_cartoon_1.getText());

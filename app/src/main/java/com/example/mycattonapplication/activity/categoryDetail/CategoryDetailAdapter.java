@@ -21,7 +21,7 @@ import com.example.mycattonapplication.model.Cartoon;
 import java.util.List;
 
 
-public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CategoryDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context myContext;
     private List<Object> cartoon_list = null;
 
@@ -29,7 +29,7 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int type_not_any_more = 1;
 
 
-    public CartoonDetailAdapter(List<Object> cartoon_list){
+    public CategoryDetailAdapter(List<Object> cartoon_list){
         this.cartoon_list = cartoon_list;
     }
 

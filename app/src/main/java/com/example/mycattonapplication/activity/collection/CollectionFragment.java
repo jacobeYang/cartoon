@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.categoryDetail.CategoryDetailAdapter;
 import com.example.mycattonapplication.model.Cartoon;
+import com.example.mycattonapplication.model.NotAnyMore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class CollectionFragment extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private CollectionCartoonAdapter cartoonAdapter;
-    private List<Cartoon> item_list;
+    private List<Object> item_list;
     private Context context;
 
     @Nullable
@@ -37,13 +39,14 @@ public class CollectionFragment extends Fragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.collection_recycle_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context,1);
         recyclerView.setLayoutManager(gridLayoutManager);
+        //cartoonAdapter = new CollectionCartoonAdapter(item_list);
         cartoonAdapter = new CollectionCartoonAdapter(item_list);
         recyclerView.setAdapter(cartoonAdapter);
     }
 
 
     public void list_init(){
-        item_list = new ArrayList<Cartoon>();
+        item_list = new ArrayList<Object>();
         Cartoon cartoon1 = new Cartoon();
         cartoon1.setImageId(R.mipmap.a1);
         cartoon1.setCartoon_name("漫画名");
@@ -75,6 +78,8 @@ public class CollectionFragment extends Fragment {
         item_list.add(cartoon1);
         item_list.add(cartoon2);
         item_list.add(cartoon3);
+
+        item_list.add(new NotAnyMore());
     }
 
 }

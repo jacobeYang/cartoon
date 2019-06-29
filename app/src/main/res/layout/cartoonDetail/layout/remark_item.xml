@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/my_remark_item"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/remark_user_image"/>
+        <TextView
+            android:id="@+id/remark_user_name"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:textSize="20dp"
+            android:text="用户名"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:id="@+id/remark_time"
+            android:layout_marginLeft="140dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="2019.06.14"
+            android:textColor="#ffffff"
+            android:textSize="16dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/remark_content"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="超级喜欢这句佳偶，跨更翠峰，等超级喜欢这句佳偶，跨更翠峰，等"
+        android:maxLines="4"
+        android:textColor="#ffffff"
+        android:textSize="20dp"/>
+
+
+</LinearLayout>

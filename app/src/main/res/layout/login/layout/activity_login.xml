@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/my_background"
     tools:context=".activity.login.LoginActivity">
 <RelativeLayout
     android:layout_width="match_parent"
@@ -19,8 +19,9 @@
             android:layout_above="@id/login_edit_pwd"
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="60dp"
             android:hint="请输入注册手机号码"
+            android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
             android:textSize="20dp"
             android:gravity="center"/>
@@ -31,8 +32,9 @@
             android:background="@drawable/my_input_back"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="60dp"
             android:hint="请输入注册密码"
+            android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
             android:textSize="20dp"
             android:gravity="center"/>

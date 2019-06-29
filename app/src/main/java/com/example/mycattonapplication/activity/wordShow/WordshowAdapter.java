@@ -2,6 +2,7 @@ package com.example.mycattonapplication.activity.wordShow;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.INotificationSideChannel;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,10 @@ import com.example.mycattonapplication.R;
 import java.util.List;
 
 public class WordshowAdapter extends RecyclerView.Adapter<WordshowAdapter.ViewHolder> {
-    private List<String> image_list;
+    private List<Integer> image_list;
     private Context myContext;
 
-    public WordshowAdapter(List<String> image_list){
+    public WordshowAdapter(List<Integer> image_list){
         this.image_list = image_list;
     }
 
@@ -42,14 +43,14 @@ public class WordshowAdapter extends RecyclerView.Adapter<WordshowAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String imageSrc = image_list.get(position);
-        Glide.with(myContext).load(imageSrc).into(holder.imageView);
+        int imageSrc = image_list.get(position);
+        Glide.with(myContext).load(imageSrc).centerCrop().into(holder.imageView);
     }
 
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return image_list.size();
     }
 }
