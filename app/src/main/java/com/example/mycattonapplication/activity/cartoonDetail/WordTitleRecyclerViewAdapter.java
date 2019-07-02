@@ -2,6 +2,7 @@ package com.example.mycattonapplication.activity.cartoonDetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,13 +37,14 @@ public class WordTitleRecyclerViewAdapter extends RecyclerView.Adapter<WordTitle
     @Override
     public void onBindViewHolder(@NonNull WordTitleRecyclerViewAdapter.ViewHolder holder, int position) {
         final WordTitle word = wordList.get(position);
-        holder.word_name.setText("第"+word.getWordTitle()+"话");
-        holder.word_number.setText(word.getWordNumber());
+        holder.word_name.setText(word.getWordTitle());
+        holder.word_number.setText("第"+word.getWordNumber()+"话");
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, WordShowActivity.class);
+                Bundle bundle = new Bundle();
                 intent.putExtra("wordId",word.getId());
                 context.startActivity(intent);
             }

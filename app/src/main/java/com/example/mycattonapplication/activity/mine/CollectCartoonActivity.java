@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.collection.CollectionCartoonAdapter;
 import com.example.mycattonapplication.model.Author;
 import com.example.mycattonapplication.model.Cartoon;
@@ -17,7 +18,7 @@ import com.example.mycattonapplication.model.NotAnyMore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectCartoonActivity extends AppCompatActivity {
+public class CollectCartoonActivity extends MyActivity {
     private RecyclerView recyclerView;
     private ImageView back;
     private List<Object> item_list;

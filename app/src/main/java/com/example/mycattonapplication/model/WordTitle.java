@@ -7,7 +7,7 @@ public class WordTitle {
 
     private String wordTitle;
 
-    private String wordNumber;
+    private Integer wordNumber;
 
     private Integer imageNumber;
 
@@ -35,12 +35,12 @@ public class WordTitle {
         this.wordTitle = wordTitle == null ? null : wordTitle.trim();
     }
 
-    public String getWordNumber() {
+    public Integer getWordNumber() {
         return wordNumber;
     }
 
-    public void setWordNumber(String wordNumber) {
-        this.wordNumber = wordNumber == null ? null : wordNumber.trim();
+    public void setWordNumber(Integer wordNumber) {
+        this.wordNumber = wordNumber;
     }
 
     public Integer getImageNumber() {

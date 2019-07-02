@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.dao.CartoonDao;
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.CartoonDetail;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
-public class CartoonDetailActivity extends AppCompatActivity {
+public class CartoonDetailActivity extends MyActivity {
     private RecyclerView cartoon_detail_recyclerView;
     private ImageView back;
     private CartoonDetailAdapter cartoon_detail_adapter;

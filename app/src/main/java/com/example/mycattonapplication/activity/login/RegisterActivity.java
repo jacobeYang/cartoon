@@ -10,12 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.dao.UserDao;
 import com.example.mycattonapplication.utils.JudgeNull;
 import com.example.mycattonapplication.utils.ShowMyToast;
 
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends MyActivity implements View.OnClickListener{
     private EditText edit_tel;
     private EditText edit_pwd;
     private EditText check_num;

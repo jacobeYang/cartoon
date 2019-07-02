@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.dao.CartoonDao;
 import com.example.mycattonapplication.model.Author;
 import com.example.mycattonapplication.model.Cartoon;
@@ -20,7 +21,7 @@ import com.example.mycattonapplication.model.NotAnyMore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends MyActivity {
     private TextView title;
     private RecyclerView search_result_recyclerView;
     private ImageView search_result_back;

@@ -11,6 +11,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.home.MainActivity;
 import com.example.mycattonapplication.dao.CartoonDao;
 import com.example.mycattonapplication.model.Cartoon;
@@ -20,7 +21,7 @@ import com.example.mycattonapplication.utils.ShowMyToast;
 
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
+public class SearchActivity extends MyActivity implements View.OnClickListener{
     private SearchView searchView;
     private TextView tv_cancle;
     private TextView tv__search_cartoon_1;

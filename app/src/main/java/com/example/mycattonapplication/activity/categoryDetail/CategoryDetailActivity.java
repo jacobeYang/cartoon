@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.home.HomeAdapter;
 import com.example.mycattonapplication.dao.CartoonDao;
 import com.example.mycattonapplication.model.Cartoon;
@@ -26,7 +27,7 @@ import java.util.List;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
-public class CategoryDetailActivity extends AppCompatActivity {
+public class CategoryDetailActivity extends MyActivity {
     private RecyclerView recyclerView;
     private CategoryDetailAdapter cartoonAdapter;
     private List<Object> item_list;

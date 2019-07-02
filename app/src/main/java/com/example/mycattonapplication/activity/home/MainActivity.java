@@ -5,15 +5,17 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.collection.CollectionFragment;
 import com.example.mycattonapplication.activity.mine.MyFragment;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends MyActivity implements View.OnClickListener{
 
     private LinearLayout ll_home;
     private LinearLayout ll_collection;

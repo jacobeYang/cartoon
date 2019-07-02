@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.home.MainActivity;
 import com.example.mycattonapplication.activity.login.LoginActivity;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends MyActivity {
     private SharedPreferences preferences;
 
     @Override

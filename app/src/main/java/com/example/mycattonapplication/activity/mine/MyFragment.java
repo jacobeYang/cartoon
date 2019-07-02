@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,7 +19,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.cartoonDetail.GlideRoundImage;
+import com.example.mycattonapplication.activity.login.LoginActivity;
+import com.example.mycattonapplication.dao.UserDao;
+import com.example.mycattonapplication.model.User;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -34,9 +40,25 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private View view;
     private Context context;
     private Intent intent;
+    private User user;
 
     private SharedPreferences preferences ;
     private SharedPreferences.Editor editor;
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    user = (User)msg.obj;
+                    Glide.with(context).load(user.getUserImageId()).transform(new CenterCrop(context),new GlideRoundImage(context)).into(user_image);
+                    user_name.setText(user.getUserName());
+                    user_autograph.setText(user.getAutograph());
+                    break;
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -62,10 +84,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
         mine_logout = (TextView)view.findViewById(R.id.mine_logout);
 
-        Glide.with(context).load(R.mipmap.a2).transform(new CenterCrop(context),new GlideRoundImage(context)).into(user_image);
-        user_name.setText("杀心大士");
-        user_autograph.setText("美景可念而不可达，佳人可望而不可及");
-
         user_image.setOnClickListener(this);
         mine_like.setOnClickListener(this);
         mine_look_through.setOnClickListener(this);
@@ -73,6 +91,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mine_remark.setOnClickListener(this);
 
         mine_logout.setOnClickListener(this);
+
+        UserDao.getUserById(preferences.getString("userId","0"),handler);
     }
 
     @Override
@@ -80,27 +100,36 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         switch(v.getId()){
             case R.id.mine_user_image:
                 intent = new Intent(context,UserInfoActivity.class);
+                intent.putExtra("userId",user.getId());
                 startActivity(intent);
                 break;
             case R.id.mine_look_through:
                 intent = new Intent(context,LookThroughCartoon.class);
+                intent.putExtra("userId",user.getId());
                 startActivity(intent);
                 break;
             case R.id.mine_collect:
                 intent = new Intent(context,CollectCartoonActivity.class);
+                intent.putExtra("userId",user.getId());
                 startActivity(intent);
                 break;
             case R.id.mine_like:
                 intent = new Intent(context,LikeCartoonActivity.class);
+                intent.putExtra("userId",user.getId());
                 startActivity(intent);
                 break;
             case R.id.mine_remark:
                 intent = new Intent(context,RemarkCartoonActivity.class);
+                intent.putExtra("userId",user.getId());
                 startActivity(intent);
                 break;
             case R.id.mine_logout:
                 editor.putBoolean("login_statue",false);
                 editor.commit();
+
+                intent = new Intent(context, LoginActivity.class);
+                startActivity(intent);
+                MyActivity.finishAll();
         }
     }
 }

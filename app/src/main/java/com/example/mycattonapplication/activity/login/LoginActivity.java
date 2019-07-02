@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.home.MainActivity;
 import com.example.mycattonapplication.dao.UserDao;
 import com.example.mycattonapplication.model.User;
@@ -23,7 +24,7 @@ import com.example.mycattonapplication.utils.ShowMyToast;
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends MyActivity implements View.OnClickListener{
     private EditText edit_tel = null;
     private EditText edit_pwd = null;
     private Button btn_login = null;

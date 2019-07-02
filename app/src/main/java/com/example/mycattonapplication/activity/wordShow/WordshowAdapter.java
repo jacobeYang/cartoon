@@ -11,14 +11,15 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.utils.HttpUtil;
 
 import java.util.List;
 
 public class WordshowAdapter extends RecyclerView.Adapter<WordshowAdapter.ViewHolder> {
-    private List<Integer> image_list;
+    private List<String> image_list;
     private Context myContext;
 
-    public WordshowAdapter(List<Integer> image_list){
+    public WordshowAdapter(List<String> image_list){
         this.image_list = image_list;
     }
 
@@ -43,8 +44,8 @@ public class WordshowAdapter extends RecyclerView.Adapter<WordshowAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int imageSrc = image_list.get(position);
-        Glide.with(myContext).load(imageSrc).centerCrop().into(holder.imageView);
+        String imageSrc = image_list.get(position);
+        Glide.with(myContext).load(HttpUtil.basePath+imageSrc).centerCrop().into(holder.imageView);
     }
 
 
