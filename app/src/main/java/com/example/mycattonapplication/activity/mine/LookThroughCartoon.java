@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.collection.CollectionCartoonAdapter;
+import com.example.mycattonapplication.model.Author;
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.NotAnyMore;
 
@@ -42,39 +43,33 @@ public class LookThroughCartoon  extends AppCompatActivity {
         recyclerView.setAdapter(new CollectionCartoonAdapter(item_list));
     }
 
-    public void list_init() {
+    public void list_init(){
         item_list = new ArrayList<Object>();
         Cartoon cartoon1 = new Cartoon();
-        cartoon1.setImageId(R.mipmap.a1);
-        cartoon1.setCartoon_name("漫画名");
-        cartoon1.setAuthor_name("作者名");
-        Cartoon cartoon2 = new Cartoon();
-        cartoon2.setImageId(R.mipmap.a2);
-        cartoon2.setCartoon_name("漫画名");
-        cartoon2.setAuthor_name("作者名");
-        Cartoon cartoon3 = new Cartoon();
-        cartoon3.setImageId(R.mipmap.a3);
-        cartoon3.setCartoon_name("漫画名");
-        cartoon3.setAuthor_name("作者名");
+        cartoon1.setImageId(String.valueOf(R.mipmap.a1));
+        cartoon1.setCartoonName("漫画名");
+        Author author = new Author();
+        author.setAuthorName("作者名");
+        cartoon1.setAuthor(author);
 
         item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
         item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
         item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
         item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
         item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
         item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
+        item_list.add(cartoon1);
 
         item_list.add(new NotAnyMore());
     }

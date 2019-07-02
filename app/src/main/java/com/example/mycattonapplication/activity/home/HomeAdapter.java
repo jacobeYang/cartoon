@@ -2,8 +2,6 @@ package com.example.mycattonapplication.activity.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.cartoonDetail.CartoonDetailActivity;
@@ -20,6 +17,7 @@ import com.example.mycattonapplication.activity.categoryDetail.CategoryDetailAct
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.Category;
 import com.example.mycattonapplication.model.HeadLine;
+import com.example.mycattonapplication.model.Home;
 import com.example.mycattonapplication.model.MyBanner;
 import com.example.mycattonapplication.model.NotAnyMore;
 import com.example.mycattonapplication.utils.GlideImageLoader;
@@ -27,9 +25,8 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -41,8 +38,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context myContext;
     private List<Object> list;
 
-    public HomeAdapter(List<Object> list){
-        this.list = list;
+    public HomeAdapter(Home home){
+        list = new ArrayList<Object>();
+        if(home.getBanner() != null){
+            list.add(home.getBanner());
+            list.addAll(home.getCategoryList());
+            list.add(home.getGuessYouLike());
+            list.addAll(home.getGuessYouLikeCartoon());
+            list.add(home.getHotRecommend());
+            list.addAll(home.getHotRecommendCartoon());
+            list.add(home.getCategory1());
+            list.addAll(home.getCategory1Cartoon());
+            list.add(home.getCategory2());
+            list.addAll(home.getCategory2Cartoon());
+            list.add(home.getNotAnyMore());
+        }
     }
 
     static class CartoonItemViewHolder extends RecyclerView.ViewHolder{
@@ -135,8 +145,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(holder instanceof CartoonItemViewHolder){
             final Cartoon cartoon = (Cartoon) list.get(position);
             CartoonItemViewHolder cartoonItemViewHolder = (CartoonItemViewHolder)holder;
-            cartoonItemViewHolder.cartoon_name.setText(cartoon.getCartoon_name());
-            cartoonItemViewHolder.author_name.setText(cartoon.getAuthor_name());
+            cartoonItemViewHolder.cartoon_name.setText(cartoon.getCartoonName());
+            cartoonItemViewHolder.author_name.setText(cartoon.getAuthorId());
             Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(cartoonItemViewHolder.imageView);
             cartoonItemViewHolder.ll_cartoon.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -163,24 +173,33 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }else if(holder instanceof CategoryItemViewHolder){
             final Category category = (Category)list.get(position);
             CategoryItemViewHolder categoryItemViewHolder = (CategoryItemViewHolder)holder;
-            categoryItemViewHolder.textView.setText(category.getCategory_name());
+            categoryItemViewHolder.textView.setText(category.getCategoryName());
             Glide.with(myContext).load(category.getIconId()).into(categoryItemViewHolder.imageView);
             categoryItemViewHolder.categoryItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(myContext, CategoryDetailActivity.class);
-                    intent.putExtra("categoryId",category.getCategoryId());
-                    intent.putExtra("categoryName",category.getCategory_name());
+                    intent.putExtra("categoryId",category.getId());
+                    intent.putExtra("categoryName",category.getCategoryName());
                     myContext.startActivity(intent);
                 }
             });
         }else if(holder instanceof BannerViewHolder){
-            final MyBanner banner = (MyBanner)list.get(position);
             BannerViewHolder bannerViewHolder = (BannerViewHolder)holder;
-            List<Integer> imagelist = banner.getImageList();
+
+            MyBanner banner = (MyBanner)list.get(position);
+            List<String> imagelist = new ArrayList<String>();
+            final List<Cartoon> cartoonList = banner.getCartoonList();
+            for(Cartoon cartoon:cartoonList){
+                imagelist.add(cartoon.getImageId());
+            }
+            List<Integer> integerList = new ArrayList<Integer>();
+            integerList.add(R.mipmap.a1);
+            integerList.add(R.mipmap.a2);
+            integerList.add(R.mipmap.a3);
+            integerList.add(R.mipmap.a3);
 
             bannerViewHolder.banner.setImages(imagelist).setBannerStyle(BannerConfig.CIRCLE_INDICATOR)//显示风格
-
                     .setDelayTime(4000)
                     .setBannerAnimation(Transformer.CubeIn)//轮播动画
                     .setImageLoader(new GlideImageLoader())
@@ -191,7 +210,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void OnBannerClick(int position) {
                     Intent intent = new Intent(myContext, CartoonDetailActivity.class);
-                    intent.putExtra("cartoonId",position);
+                    intent.putExtra("cartoonId",cartoonList.get(position).getId());
                     myContext.startActivity(intent);
                 }
             });

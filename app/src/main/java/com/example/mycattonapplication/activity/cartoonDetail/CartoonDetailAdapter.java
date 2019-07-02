@@ -1,6 +1,9 @@
 package com.example.mycattonapplication.activity.cartoonDetail;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,25 +18,62 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.dao.RemarkDao;
+import com.example.mycattonapplication.dao.UserOptionDao;
+import com.example.mycattonapplication.dao.WordTitleDao;
 import com.example.mycattonapplication.model.CartoonDetail;
 import com.example.mycattonapplication.model.Remark;
 import com.example.mycattonapplication.model.RemarkRecyclerView;
 import com.example.mycattonapplication.model.Remark_input;
-import com.example.mycattonapplication.model.Word;
+import com.example.mycattonapplication.model.WordTitle;
 import com.example.mycattonapplication.model.WordTitleRecyclerView;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Object> list = null;
+    private List<Object> list;
     private Context myContext;
 
     private static final int TYPE_DETAIL = 0;
     private static final int TYPE_REMARK_RECYCLER_VIEW = 1;
     private static final int TYPE_REMARK_INPUT = 2;
     private static final int TYPE_TITLE_RECYCLER_VIEW = 3;
+    private SharedPreferences sharedPreferences;
+    private String thisCartoonId;
+    RemarkRecyclerViewAdapter remarkRecyclerViewAdapter;
+    List<Remark> remarkList;
 
-    public CartoonDetailAdapter(List<Object> word_list){
+    WordTitleRecyclerViewAdapter wordTitleRecyclerViewAdapter;
+    List<WordTitle> wordList;
+
+    private boolean catalogOrderFlag = true;//true 代表正序 默认正序
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:         //评论
+                    remarkList.clear();
+                    remarkList.addAll((List<Remark>)msg.obj);
+                    remarkRecyclerViewAdapter.notifyDataSetChanged();
+                    break;
+                case 2:         //目录
+                    wordList.addAll((List<WordTitle>)msg.obj);
+                    wordTitleRecyclerViewAdapter.notifyDataSetChanged();
+
+                    break;
+
+            }
+        }
+    };
+
+    public CartoonDetailAdapter(List<Object> word_list,SharedPreferences sharedPreferences,String thisCartoonId){
         this.list = word_list;
+        this.sharedPreferences = sharedPreferences;
+        this.thisCartoonId = thisCartoonId;
     }
 
     @NonNull
@@ -66,10 +106,10 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
         if(object instanceof CartoonDetail){
             final DetailViewHolder detailViewHolder = (DetailViewHolder)holder;
             final CartoonDetail cartoonDetail = (CartoonDetail)object;
-            Glide.with(myContext).load(cartoonDetail.getCartoon_image()).centerCrop().into(detailViewHolder.cartoon_detail_image);
-            Glide.with(myContext).load(cartoonDetail.getCartoon_author_image()).transform(new CenterCrop(myContext),new GlideRoundImage(myContext)).into(detailViewHolder.cartoon_detail_author_image);
-            Glide.with(myContext).load(cartoonDetail.getCartoon_role1_image()).transform(new CenterCrop(myContext),new GlideRoundImage(myContext)).into(detailViewHolder.cartoon_detail_role1_image);
-            Glide.with(myContext).load(cartoonDetail.getCartoon_role2_image()).transform(new CenterCrop(myContext),new GlideRoundImage(myContext)).into(detailViewHolder.cartoon_detail_role2_image);
+            Glide.with(myContext).load(cartoonDetail.getCartoon().getImageId()).centerCrop().into(detailViewHolder.cartoon_detail_image);
+            Glide.with(myContext).load(cartoonDetail.getCartoon().getAuthor().getAuthorImageId()).transform(new CenterCrop(myContext),new GlideRoundImage(myContext)).into(detailViewHolder.cartoon_detail_author_image);
+            Glide.with(myContext).load(cartoonDetail.getCartoonRole1().getRoleImageId()).transform(new CenterCrop(myContext),new GlideRoundImage(myContext)).into(detailViewHolder.cartoon_detail_role1_image);
+            Glide.with(myContext).load(cartoonDetail.getCartoonRole2().getRoleImageId()).transform(new CenterCrop(myContext),new GlideRoundImage(myContext)).into(detailViewHolder.cartoon_detail_role2_image);
             if(cartoonDetail.isFlag_collection()){
                 Glide.with(myContext).load(R.mipmap.collection).centerCrop().into(detailViewHolder.cartoon_detail_collect);
                 detailViewHolder.detail_item_collect_text.setTextColor(myContext.getResources().getColor(R.color.my_primary));
@@ -85,11 +125,11 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                detailViewHolder.detail_item_like_text.setTextColor(myContext.getResources().getColor(R.color.my_primary_white));
            }
 
-            detailViewHolder.cartoon_detail_cartoon_name.setText(cartoonDetail.getCartoon_name());
-            detailViewHolder.cartoon_detail_author_name.setText(cartoonDetail.getCartoon_author());
-            detailViewHolder.cartoon_detail_role1_name.setText(cartoonDetail.getCartoon_role1());
-            detailViewHolder.cartoon_detail_role2_name.setText(cartoonDetail.getCartoon_role2());
-            detailViewHolder.cartoon_detail_brief.setText(cartoonDetail.getCartoon_brief());
+            detailViewHolder.cartoon_detail_cartoon_name.setText(cartoonDetail.getCartoon().getCartoonName());
+            detailViewHolder.cartoon_detail_author_name.setText(cartoonDetail.getCartoon().getAuthor().getAuthorName());
+            detailViewHolder.cartoon_detail_role1_name.setText(cartoonDetail.getCartoonRole1().getRoleName());
+            detailViewHolder.cartoon_detail_role2_name.setText(cartoonDetail.getCartoonRole2().getRoleName());
+            detailViewHolder.cartoon_detail_brief.setText(cartoonDetail.getCartoon().getBriefIntroduction());
 
             detailViewHolder.cartoon_detail_collect.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,7 +148,7 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                     }
                     //修改数据库内容
-
+                    UserOptionDao.setCartoonCollection(sharedPreferences.getString("userId","0"),cartoonDetail.getCartoon().getId(),cartoonDetail.isFlag_collection(),handler);
 
                 }
             });
@@ -127,7 +167,7 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                         cartoonDetail.setFlag_like(true);
                     }
                     //修改数据库内容
-
+                    UserOptionDao.setCartoonLike(sharedPreferences.getString("userId","0"),cartoonDetail.getCartoon().getId(),cartoonDetail.isFlag_like(),handler);
                 }
             });
 
@@ -136,7 +176,10 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(myContext);
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             remarkRecyclerViewHolder.remarkRecyclerView.setLayoutManager(linearLayoutManager);
-            remarkRecyclerViewHolder.remarkRecyclerView.setAdapter(new RemarkRecyclerViewAdapter(getRemarkList()));
+            remarkList = new ArrayList<Remark>();
+            remarkRecyclerViewAdapter = new RemarkRecyclerViewAdapter(remarkList);
+            remarkRecyclerViewHolder.remarkRecyclerView.setAdapter(remarkRecyclerViewAdapter);
+            RemarkDao.getCartoonRemark(thisCartoonId,handler);
         }else if(object instanceof Remark_input){
             final RemarkInputViewHolder remarkInputViewHolder = (RemarkInputViewHolder)holder;
 
@@ -144,6 +187,10 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             remarkInputViewHolder.remark_input.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if ((event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())){
+                        RemarkDao.setRemark(sharedPreferences.getString("userId","0"),thisCartoonId, remarkInputViewHolder.remark_input.getText().toString().trim(),handler,remarkInputViewHolder.remark_input);
+                        return true;
+                    }
                     return false;
                 }
             });
@@ -153,10 +200,14 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 @Override
                 public void onClick(View v) {
                     //判断当前是否为正序
-
-                    //如果不是，设置为正序
-                    remarkInputViewHolder.up.setImageResource(R.mipmap.up);
-                    remarkInputViewHolder.down.setImageResource(R.mipmap.downwhite);
+                    if(!catalogOrderFlag){
+                        //如果不是，设置为正序
+                        remarkInputViewHolder.up.setImageResource(R.mipmap.up);
+                        remarkInputViewHolder.down.setImageResource(R.mipmap.downwhite);
+                        Collections.reverse(wordList);
+                        wordTitleRecyclerViewAdapter.notifyDataSetChanged();
+                        catalogOrderFlag = true;
+                    }
                 }
             });
 
@@ -165,10 +216,15 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 @Override
                 public void onClick(View v) {
                     //判断当前是否为倒序
+                    if(catalogOrderFlag){
+                        //如果不是，设置为倒序
+                        remarkInputViewHolder.up.setImageResource(R.mipmap.upwhite);
+                        remarkInputViewHolder.down.setImageResource(R.mipmap.down);
+                        Collections.reverse(wordList);
+                        wordTitleRecyclerViewAdapter.notifyDataSetChanged();
+                        catalogOrderFlag = false;
+                    }
 
-                    //如果不是，设置为倒序
-                    remarkInputViewHolder.up.setImageResource(R.mipmap.upwhite);
-                    remarkInputViewHolder.down.setImageResource(R.mipmap.down);
                 }
             });
 
@@ -177,7 +233,10 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             //WordTitleRecyclerView wordTitleRecyclerView = (WordTitleRecyclerView)list.get(position);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(myContext);
             wordTitleRecyclerViewHolder.wordTitleRecyclerView.setLayoutManager(linearLayoutManager);
-            wordTitleRecyclerViewHolder.wordTitleRecyclerView.setAdapter(new WordTitleRecyclerViewAdapter(getWordList()));
+            wordList = new ArrayList<WordTitle>();
+            wordTitleRecyclerViewAdapter = new WordTitleRecyclerViewAdapter(wordList);
+            wordTitleRecyclerViewHolder.wordTitleRecyclerView.setAdapter(wordTitleRecyclerViewAdapter);
+            WordTitleDao.getWordTitle(thisCartoonId,handler);
         }
 
     }
@@ -273,43 +332,5 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         return  0;
     }
-
-    public  List<Remark> getRemarkList(){
-        List<Remark> remarkList = new ArrayList<Remark>();
-        Remark remark = new Remark();
-        remark.setId("2132");
-        remark.setRemark_content("很喜欢漫画主角的都比形象。");
-        remark.setRemark_time("2019.06.15");
-        remark.setRemark_user_name("星辰大海");
-        remark.setRemark_user_image(R.mipmap.a3);
-
-        remarkList.add(remark);
-        remarkList.add(remark);
-        remarkList.add(remark);
-        remarkList.add(remark);
-        remarkList.add(remark);
-        remarkList.add(remark);
-
-        return remarkList;
-    }
-
-
-    public  List<Word> getWordList(){
-        List<Word> wordList = new ArrayList<Word>();
-        Word word = new Word();
-        word.setWord_number("第一话");
-        word.setWord_name("序章");
-
-        wordList.add(word);
-        wordList.add(word);
-        wordList.add(word);
-        wordList.add(word);
-        wordList.add(word);
-        wordList.add(word);
-
-        return wordList;
-    }
-
-
 
 }

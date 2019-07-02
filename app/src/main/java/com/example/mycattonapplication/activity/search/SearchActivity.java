@@ -1,6 +1,8 @@
 package com.example.mycattonapplication.activity.search;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -10,8 +12,13 @@ import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.home.MainActivity;
+import com.example.mycattonapplication.dao.CartoonDao;
+import com.example.mycattonapplication.model.Cartoon;
+import com.example.mycattonapplication.model.NotAnyMore;
 import com.example.mycattonapplication.utils.JudgeNull;
 import com.example.mycattonapplication.utils.ShowMyToast;
+
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
     private SearchView searchView;
@@ -23,6 +30,25 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private TextView tv__search_cartoon_5;
     private Intent intentToSearchResult;
     private String searchText;
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:
+                    List<String> cartoonList= (List<String>)msg.obj;
+                    tv__search_cartoon_1.setText(cartoonList.get(0));
+                    tv__search_cartoon_2.setText(cartoonList.get(1));
+                    tv__search_cartoon_3.setText(cartoonList.get(2));
+                    tv__search_cartoon_4.setText(cartoonList.get(3));
+                    tv__search_cartoon_5.setText(cartoonList.get(4));
+                    break;
+            }
+
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +94,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         tv__search_cartoon_3.setOnClickListener(this);
         tv__search_cartoon_4.setOnClickListener(this);
         tv__search_cartoon_5.setOnClickListener(this);
+
+        CartoonDao.getSearchRecommend(handler);
     }
 
     @Override

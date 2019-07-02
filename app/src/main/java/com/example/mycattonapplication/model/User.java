@@ -1,28 +1,27 @@
 package com.example.mycattonapplication.model;
 
+import com.example.mycattonapplication.utils.HttpUtil;
+
+import java.util.Date;
+
 public class User {
-    String id;
-    String name;
-    char sex;
-    String tel;
-    String pwd;
-    String time;//注册时间
+    private String id;
 
-    public char getSex() {
-        return sex;
-    }
+    private String userName;
 
-    public void setSex(char sex) {
-        this.sex = sex;
-    }
+    private String userTel;
 
-    public String getTime() {
-        return time;
-    }
+    private String userPwd;
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+    private String sex;
+
+    private Date time;
+
+    private String autograph;
+
+    private Integer userAge;
+
+    private String userImageId;
 
     public String getId() {
         return id;
@@ -32,27 +31,67 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getUserTel() {
+        return userTel;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
     }
 
-    public String getTel() {
-        return tel;
+    public String getUserPwd() {
+        return userPwd;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getAutograph() {
+        return autograph;
+    }
+
+    public void setAutograph(String autograph) {
+        this.autograph = autograph;
+    }
+
+    public Integer getUserAge() {
+        return userAge;
+    }
+
+    public void setUserAge(Integer userAge) {
+        this.userAge = userAge;
+    }
+
+    public String getUserImageId() {
+        return HttpUtil.basePath+userImageId;
+    }
+
+    public void setUserImageId(String userImageId) {
+        this.userImageId = userImageId;
     }
 }

@@ -87,8 +87,8 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
             if(object instanceof Cartoon) {
                 final Cartoon cartoon = (Cartoon)object;
                 CartoonViewHolder cartoonViewHolder = (CartoonViewHolder) holder;
-                cartoonViewHolder.cartoon_name.setText(cartoon.getCartoon_name());
-                cartoonViewHolder.carton_author.setText(cartoon.getAuthor_name());
+                cartoonViewHolder.cartoon_name.setText(cartoon.getCartoonName());
+                cartoonViewHolder.carton_author.setText(cartoon.getAuthor().getAuthorName());
                 Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(cartoonViewHolder.imageView);
                 cartoonViewHolder.cartoon_item_one.setOnClickListener(new View.OnClickListener() {
                     @Override

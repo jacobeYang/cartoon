@@ -2,6 +2,7 @@ package com.example.mycattonapplication.activity.mine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.cartoonDetail.GlideRoundImage;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class MyFragment extends Fragment implements View.OnClickListener {
     private ImageView user_image;
     private TextView user_name;
@@ -26,10 +29,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private LinearLayout mine_look_through;
     private LinearLayout mine_collect;
     private LinearLayout mine_remark;
+    private TextView mine_logout;
 
     private View view;
     private Context context;
     private Intent intent;
+
+    private SharedPreferences preferences ;
+    private SharedPreferences.Editor editor;
 
     @Nullable
     @Override
@@ -41,6 +48,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     public void init_view(){
+        preferences = getDefaultSharedPreferences(context);
+        editor = preferences.edit();
+
         user_image = (ImageView)view.findViewById(R.id.mine_user_image);
         user_name = (TextView)view.findViewById(R.id.mine_user_name);
         user_autograph = (TextView)view.findViewById(R.id.mine_user_autograph);
@@ -49,6 +59,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mine_look_through = (LinearLayout)view.findViewById(R.id.mine_look_through);
         mine_collect = (LinearLayout)view.findViewById(R.id.mine_collect);
         mine_remark = (LinearLayout)view.findViewById(R.id.mine_remark);
+
+        mine_logout = (TextView)view.findViewById(R.id.mine_logout);
 
         Glide.with(context).load(R.mipmap.a2).transform(new CenterCrop(context),new GlideRoundImage(context)).into(user_image);
         user_name.setText("杀心大士");
@@ -59,6 +71,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mine_look_through.setOnClickListener(this);
         mine_collect.setOnClickListener(this);
         mine_remark.setOnClickListener(this);
+
+        mine_logout.setOnClickListener(this);
     }
 
     @Override
@@ -84,6 +98,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(context,RemarkCartoonActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.mine_logout:
+                editor.putBoolean("login_statue",false);
+                editor.commit();
         }
     }
 }

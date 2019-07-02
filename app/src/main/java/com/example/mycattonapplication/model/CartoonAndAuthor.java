@@ -1,8 +1,6 @@
 package com.example.mycattonapplication.model;
 
-import com.example.mycattonapplication.utils.HttpUtil;
-
-public class Cartoon {
+public class CartoonAndAuthor {
     private String id;
 
     private String cartoonName;
@@ -17,16 +15,9 @@ public class Cartoon {
 
     private String categoryId;
 
-    private Author author;
+    private String authorName;
 
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
+    private String authorImageId;
 
     public String getId() {
         return id;
@@ -61,7 +52,7 @@ public class Cartoon {
     }
 
     public String getImageId() {
-        return HttpUtil.basePath +imageId;
+        return imageId;
     }
 
     public void setImageId(String imageId) {

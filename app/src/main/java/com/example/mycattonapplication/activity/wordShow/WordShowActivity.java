@@ -1,5 +1,7 @@
 package com.example.mycattonapplication.activity.wordShow;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +23,18 @@ public class WordShowActivity extends AppCompatActivity {
     private ImageView imageView;
     private List<Integer> list;
     private String show_word_name;
+    WordshowAdapter wordshowAdapter;
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +58,11 @@ public class WordShowActivity extends AppCompatActivity {
             }
         });
 
-        list_init();
+        list = new ArrayList<Integer>();
         recyclerView = (AutoPollRecyclerView)findViewById(R.id.word_show_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new WordshowAdapter(list));
+        wordshowAdapter = new WordshowAdapter(list);
+        recyclerView.setAdapter(wordshowAdapter);
         recyclerView.start();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -85,7 +100,7 @@ public class WordShowActivity extends AppCompatActivity {
     }
 
     public void list_init(){
-        list = new ArrayList<Integer>();
+
         list.add(R.mipmap.a1);
         list.add(R.mipmap.a1);
         list.add(R.mipmap.a1);

@@ -1,6 +1,9 @@
 package com.example.mycattonapplication.activity.categoryDetail;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,11 +13,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.activity.home.HomeAdapter;
+import com.example.mycattonapplication.dao.CartoonDao;
 import com.example.mycattonapplication.model.Cartoon;
+import com.example.mycattonapplication.model.Category;
+import com.example.mycattonapplication.model.HeadLine;
+import com.example.mycattonapplication.model.MyBanner;
 import com.example.mycattonapplication.model.NotAnyMore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class CategoryDetailActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -26,17 +36,38 @@ public class CategoryDetailActivity extends AppCompatActivity {
     private String intent_category_id;
     private String intent_category_name;
 
+    SharedPreferences sharedPreferences;
+
+    final Handler handler = new Handler(){
+        int caseNum = 0;
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:
+                    List<Cartoon> cartoons = (List<Cartoon>)msg.obj;
+                    item_list.addAll(cartoons);
+                    item_list.add(new NotAnyMore());
+                    cartoonAdapter.notifyDataSetChanged();
+                    break;
+            }
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_detail);
+
+        sharedPreferences = getDefaultSharedPreferences(this);
 
         Intent intent = getIntent();
         intent_category_id = intent.getStringExtra("categoryId");
         intent_category_name = intent.getStringExtra("categoryName");
 
         //漫画列表
-        list_init();
+        item_list = new ArrayList<Object>();
         view_init();
 
     }
@@ -59,51 +90,9 @@ public class CategoryDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        //请求数据
+        CartoonDao.getCartoonByCategory(sharedPreferences.getString("userId","0"),intent_category_id,handler);
     }
 
-    public void list_init(){
-        item_list = new ArrayList<Object>();
-        Cartoon cartoon1 = new Cartoon();
-        cartoon1.setImageId(R.mipmap.a1);
-        cartoon1.setCartoon_name("漫画名");
-        cartoon1.setAuthor_name("作者名");
-        cartoon1.setBrief_introduction("就发到卡夫卡打个卡就看见爱空间国家开发");
-        cartoon1.setId("123231");
-
-        Cartoon cartoon2 = new Cartoon();
-        cartoon2.setImageId(R.mipmap.a2);
-        cartoon2.setCartoon_name("漫画名");
-        cartoon2.setAuthor_name("作者名");
-        cartoon2.setBrief_introduction("就发到卡夫卡打个卡就看见爱空间国家开发");
-        cartoon2.setId("123231");
-
-        Cartoon cartoon3 = new Cartoon();
-        cartoon3.setImageId(R.mipmap.a3);
-        cartoon3.setCartoon_name("漫画名");
-        cartoon3.setAuthor_name("作者名");
-        cartoon3.setBrief_introduction("就发到卡夫卡打个卡就看见爱空间国家开发");
-        cartoon3.setId("123231");
-
-
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-
-        item_list.add(new NotAnyMore());
-    }
 }

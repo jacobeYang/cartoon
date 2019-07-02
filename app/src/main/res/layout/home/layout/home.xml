@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/my_background">
 
-
-
-
-
-
-
     <!--滑动页面-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_recycle"

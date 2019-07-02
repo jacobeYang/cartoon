@@ -1,6 +1,8 @@
 package com.example.mycattonapplication.activity.search;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mycattonapplication.R;
+import com.example.mycattonapplication.dao.CartoonDao;
+import com.example.mycattonapplication.model.Author;
 import com.example.mycattonapplication.model.Cartoon;
+import com.example.mycattonapplication.model.NotAnyMore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,22 @@ public class SearchResultActivity extends AppCompatActivity {
     private RecyclerView search_result_recyclerView;
     private ImageView search_result_back;
     private List<Cartoon> cartoonList;
+    private CartoonAdapterOne cartoonAdapterOne;
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:
+                    List<Cartoon> resultList = (List<Cartoon>)msg.obj;
+                    cartoonList.addAll(resultList);
+                    cartoonAdapterOne.notifyDataSetChanged();
+                    break;
+            }
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +54,10 @@ public class SearchResultActivity extends AppCompatActivity {
         title.setText(intent_title);
 
         search_result_recyclerView = (RecyclerView) findViewById(R.id.search_result_recyclerView);
-        list_init();
+        cartoonList = new ArrayList<Cartoon>();
         search_result_recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        CartoonAdapterOne cartoonAdapterOne = new CartoonAdapterOne(cartoonList);
+        cartoonAdapterOne = new CartoonAdapterOne(cartoonList);
         search_result_recyclerView.setAdapter(cartoonAdapterOne);
-
 
         search_result_back = (ImageView)findViewById(R.id.search_result_back);
         search_result_back.setOnClickListener(new View.OnClickListener() {
@@ -47,19 +67,8 @@ public class SearchResultActivity extends AppCompatActivity {
             }
         });
 
+        CartoonDao.getSearchResult(intent_title,handler);
+
     }
 
-    public void list_init(){
-        cartoonList = new ArrayList<Cartoon>();
-        Cartoon cartoon = new Cartoon();
-        cartoon.setAuthor_name("浪白白");
-        cartoon.setCartoon_name("凤执天下");
-        cartoon.setImageId(R.mipmap.a1);
-        cartoon.setBrief_introduction("had双方就发的啥咖啡加咖啡和吉安市大黄蜂科技哈第三方开花结实");
-        cartoon.setId("1213");
-        cartoonList.add(cartoon);
-        cartoonList.add(cartoon);
-        cartoonList.add(cartoon);
-        cartoonList.add(cartoon);
-    }
 }

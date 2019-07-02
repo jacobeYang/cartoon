@@ -1,16 +1,25 @@
 package com.example.mycattonapplication.model;
 
+import com.example.mycattonapplication.utils.HttpUtil;
+
 public class Category {
     private String id;
-    private String category_name;
-    private int iconId;
+    private String categoryName;
+    private String iconId;
 
-
-    public int getIconId() {
-        return iconId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setIconId(int iconId) {
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getIconId() {
+        return HttpUtil.basePath+iconId;
+    }
+
+    public void setIconId(String iconId) {
         this.iconId = iconId;
     }
 
@@ -23,11 +32,4 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategory_name() {
-        return category_name;
-    }
-
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
-    }
 }

@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.model.Remark;
+import com.example.mycattonapplication.utils.DateExchangeString;
 
 import java.util.List;
 
@@ -35,10 +37,11 @@ public class RemarkRecyclerViewAdapter extends RecyclerView.Adapter<RemarkRecycl
     @Override
     public void onBindViewHolder(@NonNull RemarkRecyclerViewAdapter.ViewHolder holder, int position) {
         Remark remark = remarkList.get(position);
-        holder.remark_user_name.setText(remark.getRemark_user_name());
-        holder.remark_content.setText(remark.getRemark_content());
-        holder.remark_time.setText(remark.getRemark_time());
-        Glide.with(context).load(remark.getRemark_user_image()).centerCrop().into(holder.remark_user_image);
+        holder.remark_user_name.setText(remark.getUser().getUserName());
+        holder.remark_content.setText(remark.getRemarkContent());
+
+        holder.remark_time.setText(DateExchangeString.DateToString(remark.getTime()));
+        Glide.with(context).load(remark.getUser().getUserImageId()).transform(new CenterCrop(context),new GlideRoundImage(context)).into(holder.remark_user_image);
 
     }
 

@@ -7,22 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.wordShow.WordShowActivity;
-import com.example.mycattonapplication.model.Remark;
-import com.example.mycattonapplication.model.Word;
+import com.example.mycattonapplication.model.WordTitle;
 
 import java.util.List;
 
 public class WordTitleRecyclerViewAdapter extends RecyclerView.Adapter<WordTitleRecyclerViewAdapter.ViewHolder>  {
-    private List<Word> wordList;
+    private List<WordTitle> wordList;
     private Context context;
-    public WordTitleRecyclerViewAdapter(List<Word> wordList){
+    public WordTitleRecyclerViewAdapter(List<WordTitle> wordList){
         this.wordList = wordList;
     }
 
@@ -38,15 +35,15 @@ public class WordTitleRecyclerViewAdapter extends RecyclerView.Adapter<WordTitle
 
     @Override
     public void onBindViewHolder(@NonNull WordTitleRecyclerViewAdapter.ViewHolder holder, int position) {
-        final Word word = wordList.get(position);
-        holder.word_name.setText(word.getWord_name());
-        holder.word_number.setText(word.getWord_number());
+        final WordTitle word = wordList.get(position);
+        holder.word_name.setText("第"+word.getWordTitle()+"话");
+        holder.word_number.setText(word.getWordNumber());
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, WordShowActivity.class);
-                intent.putExtra("wordName",word.getWord_name());
+                intent.putExtra("wordId",word.getId());
                 context.startActivity(intent);
             }
         });

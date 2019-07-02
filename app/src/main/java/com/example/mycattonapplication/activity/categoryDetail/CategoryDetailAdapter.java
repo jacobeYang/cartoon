@@ -81,8 +81,8 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         if(object instanceof  Cartoon) {
             CartoonViewHolder cartoonViewHolder = (CartoonViewHolder) holder;
             final Cartoon cartoon = (Cartoon) object;
-            cartoonViewHolder.cartoon_name.setText(cartoon.getCartoon_name());
-            cartoonViewHolder.author_name.setText(cartoon.getAuthor_name());
+            cartoonViewHolder.cartoon_name.setText(cartoon.getCartoonName());
+            cartoonViewHolder.author_name.setText(cartoon.getAuthor().getAuthorName());
             Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(cartoonViewHolder.imageView);
             cartoonViewHolder.ll_cartoon_item.setOnClickListener(new View.OnClickListener() {
                 @Override

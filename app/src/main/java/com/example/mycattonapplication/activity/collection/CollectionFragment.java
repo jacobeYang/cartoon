@@ -1,6 +1,9 @@
 package com.example.mycattonapplication.activity.collection;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,11 +15,19 @@ import android.view.ViewGroup;
 
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.categoryDetail.CategoryDetailAdapter;
+import com.example.mycattonapplication.activity.home.HomeAdapter;
+import com.example.mycattonapplication.dao.CartoonDao;
+import com.example.mycattonapplication.model.Author;
 import com.example.mycattonapplication.model.Cartoon;
+import com.example.mycattonapplication.model.Category;
+import com.example.mycattonapplication.model.HeadLine;
+import com.example.mycattonapplication.model.MyBanner;
 import com.example.mycattonapplication.model.NotAnyMore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class CollectionFragment extends Fragment {
     private View view;
@@ -24,6 +35,24 @@ public class CollectionFragment extends Fragment {
     private CollectionCartoonAdapter cartoonAdapter;
     private List<Object> item_list;
     private Context context;
+
+    SharedPreferences sharedPreferences;
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:
+                    List<Cartoon> cartoons = (List<Cartoon>)msg.obj;
+                    item_list.addAll(cartoons);
+                    item_list.add(new NotAnyMore());
+                    cartoonAdapter.notifyDataSetChanged();
+                    break;
+            }
+
+        }
+    };
 
     @Nullable
     @Override
@@ -35,51 +64,15 @@ public class CollectionFragment extends Fragment {
     }
 
     public void view_init(){
-        list_init();
+        sharedPreferences = getDefaultSharedPreferences(context);
+
+        item_list = new ArrayList<Object>();
         recyclerView = (RecyclerView)view.findViewById(R.id.collection_recycle_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context,1);
         recyclerView.setLayoutManager(gridLayoutManager);
-        //cartoonAdapter = new CollectionCartoonAdapter(item_list);
         cartoonAdapter = new CollectionCartoonAdapter(item_list);
         recyclerView.setAdapter(cartoonAdapter);
-    }
-
-
-    public void list_init(){
-        item_list = new ArrayList<Object>();
-        Cartoon cartoon1 = new Cartoon();
-        cartoon1.setImageId(R.mipmap.a1);
-        cartoon1.setCartoon_name("漫画名");
-        cartoon1.setAuthor_name("作者名");
-        Cartoon cartoon2 = new Cartoon();
-        cartoon2.setImageId(R.mipmap.a2);
-        cartoon2.setCartoon_name("漫画名");
-        cartoon2.setAuthor_name("作者名");
-        Cartoon cartoon3 = new Cartoon();
-        cartoon3.setImageId(R.mipmap.a3);
-        cartoon3.setCartoon_name("漫画名");
-        cartoon3.setAuthor_name("作者名");
-
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-        item_list.add(cartoon1);
-        item_list.add(cartoon2);
-        item_list.add(cartoon3);
-
-        item_list.add(new NotAnyMore());
+        CartoonDao.getCollection(sharedPreferences.getString("userId","0"),handler);
     }
 
 }

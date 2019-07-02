@@ -76,9 +76,9 @@ public class CartoonAdapterOne extends RecyclerView.Adapter<CartoonAdapterOne.Ca
     public void onBindViewHolder( CartoonItemViewHolder holder, final int position) {
         final Cartoon cartoon = (Cartoon) list.get(position);
         Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(holder.imageView);
-        holder.cartoon_author.setText(cartoon.getAuthor_name());
-        holder.cartoon_name.setText(cartoon.getCartoon_name());
-        holder.cartoon_brief.setText(cartoon.getBrief_introduction());
+        holder.cartoon_author.setText(cartoon.getAuthor().getAuthorName());
+        holder.cartoon_name.setText(cartoon.getCartoonName());
+        holder.cartoon_brief.setText(cartoon.getBriefIntroduction());
 
         holder.cartoon_item_one.setOnClickListener(new View.OnClickListener() {
             @Override

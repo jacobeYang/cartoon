@@ -3,13 +3,13 @@ package com.example.mycattonapplication.model;
 public class HeadLine {
     private String name;
     private String more;
-    private int categoryId;
+    private String categoryId;
 
-    public int getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoreId) {
+    public void setCategoryId(String categoreId) {
         this.categoryId = categoreId;
     }
 
