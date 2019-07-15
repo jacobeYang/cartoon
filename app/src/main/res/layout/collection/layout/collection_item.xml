@@ -12,6 +12,7 @@
             android:id="@+id/collection_cartoon_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:src="@mipmap/a1"/>
 
         <LinearLayout

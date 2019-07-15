@@ -44,6 +44,7 @@ public class CollectionFragment extends Fragment {
             super.handleMessage(msg);
             switch(msg.what){
                 case 1:
+                    item_list.clear();
                     List<Cartoon> cartoons = (List<Cartoon>)msg.obj;
                     item_list.addAll(cartoons);
                     item_list.add(new NotAnyMore());
@@ -67,12 +68,17 @@ public class CollectionFragment extends Fragment {
         sharedPreferences = getDefaultSharedPreferences(context);
 
         item_list = new ArrayList<Object>();
-        recyclerView = (RecyclerView)view.findViewById(R.id.collection_recycle_view);
+        recyclerView = view.findViewById(R.id.collection_recycle_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context,1);
         recyclerView.setLayoutManager(gridLayoutManager);
         cartoonAdapter = new CollectionCartoonAdapter(item_list);
         recyclerView.setAdapter(cartoonAdapter);
-        CartoonDao.getCollection(sharedPreferences.getString("userId","0"),handler);
+
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        CartoonDao.getCollection(sharedPreferences.getString("userId","0"),handler);
+    }
 }

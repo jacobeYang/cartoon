@@ -1,6 +1,9 @@
 package com.example.mycattonapplication.activity.mine;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,28 +11,50 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.MyActivity;
+import com.example.mycattonapplication.activity.cartoonDetail.GlideRoundImage;
 import com.example.mycattonapplication.activity.collection.CollectionCartoonAdapter;
+import com.example.mycattonapplication.dao.CartoonDao;
 import com.example.mycattonapplication.model.Author;
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.NotAnyMore;
+import com.example.mycattonapplication.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class CollectCartoonActivity extends MyActivity {
     private RecyclerView recyclerView;
     private ImageView back;
     private List<Object> item_list;
+    CollectionCartoonAdapter collectionCartoonAdapter;
+    SharedPreferences sharedPreferences;
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    item_list.addAll(( List<Object>)msg.obj);
+                    collectionCartoonAdapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collect_cartoon);
 
-        recyclerView = (RecyclerView)findViewById(R.id.collect_cartoon_recycler_view);
-        back = (ImageView)findViewById(R.id.collect_cartoon_back);
+        recyclerView = findViewById(R.id.collect_cartoon_recycler_view);
+        back = findViewById(R.id.collect_cartoon_back);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,39 +63,14 @@ public class CollectCartoonActivity extends MyActivity {
             }
         });
 
-        list_init();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter( new CollectionCartoonAdapter(item_list) );
-    }
-
-    public void list_init(){
         item_list = new ArrayList<Object>();
-        Cartoon cartoon1 = new Cartoon();
-        cartoon1.setImageId(String.valueOf(R.mipmap.a1));
-        cartoon1.setCartoonName("漫画名");
-        Author author = new Author();
-        author.setAuthorName("作者名");
-        cartoon1.setAuthor(author);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        collectionCartoonAdapter = new CollectionCartoonAdapter(item_list);
+        recyclerView.setAdapter(collectionCartoonAdapter);
 
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-        item_list.add(cartoon1);
-
-        item_list.add(new NotAnyMore());
+        sharedPreferences = getDefaultSharedPreferences(this);
+        CartoonDao.getCollection(sharedPreferences.getString("userId","0"),handler);
     }
+
+
 }

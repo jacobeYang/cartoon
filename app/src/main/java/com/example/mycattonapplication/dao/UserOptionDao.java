@@ -30,7 +30,7 @@ public class UserOptionDao {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
 //                boolean flag = Boolean.parseBoolean(response.body().string());
 //                //gson.fromJson(result,new TypeToken<boolean[]>(){}.getType());
 //                Message message = new Message();
@@ -54,7 +54,7 @@ public class UserOptionDao {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
 //                boolean flag = Boolean.getBoolean(response.body().string());
 //                Message message = new Message();
 //                message.what = 2;
@@ -63,5 +63,25 @@ public class UserOptionDao {
             }
         });
     }
+    public static void removeCollection(String userId, String cartoonId, final int position, final Handler handler) {
+        RequestBody requestBody = new FormBody.Builder()
+                .add(   "cartoonId",cartoonId)
+                .add(   "userId",userId)
+                .build();
 
+        HttpUtil.sendHttpRequestPost("/removeCollection",requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response){
+                Message message = new Message();
+                message.what = 1;
+                message.arg1 = position;
+                handler.sendMessage(message);
+            }
+        });
+    }
 }

@@ -41,10 +41,10 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         public CartoonViewHolder(View itemView) {
             super(itemView);
-            ll_cartoon_item = (LinearLayout)itemView.findViewById(R.id.ll_cartoon);
-            cartoon_name = (TextView)itemView.findViewById(R.id.cartoon_name);
-            author_name = (TextView)itemView.findViewById(R.id.author_name);
-            imageView = (ImageView)itemView.findViewById(R.id.cartoon_image);
+            ll_cartoon_item = itemView.findViewById(R.id.ll_cartoon);
+            cartoon_name = itemView.findViewById(R.id.cartoon_name);
+            author_name = itemView.findViewById(R.id.author_name);
+            imageView = itemView.findViewById(R.id.cartoon_image);
         }
     }
 

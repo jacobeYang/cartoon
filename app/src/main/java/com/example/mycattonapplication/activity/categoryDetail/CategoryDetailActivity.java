@@ -74,9 +74,9 @@ public class CategoryDetailActivity extends MyActivity {
     }
 
     public void view_init(){
-        back = (ImageView)findViewById(R.id.category_detail_result_back);
-        title = (TextView)findViewById(R.id.category_detail_title);
-        recyclerView = (RecyclerView)findViewById(R.id.category_recycler_view);
+        back = findViewById(R.id.category_detail_result_back);
+        title = findViewById(R.id.category_detail_title);
+        recyclerView = findViewById(R.id.category_recycler_view);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);

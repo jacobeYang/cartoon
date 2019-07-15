@@ -244,4 +244,95 @@ public class CartoonDao {
             }
         });
     }
+
+    public static void addLookThrough(String userId, String cartoonId) {
+        RequestBody requestBody = new FormBody.Builder()
+                .add(   "cartoonId",cartoonId)
+                .add(   "userId",userId)
+                .build();
+
+        HttpUtil.sendHttpRequestPost("/addLookThrough",requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+
+            }
+        });
+    }
+
+    public static void getLikeCartoon(String userId,final Handler handler){
+        RequestBody requestBody = new FormBody.Builder()
+                .add("userId",userId)
+                .build();
+
+        HttpUtil.sendHttpRequestPost("/getLikeCartoon",requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                String result = response.body().string();
+                List<Cartoon> bannerList = gson.fromJson(result,new TypeToken<List<Cartoon>>(){}.getType());
+                Message message = new Message();
+                message.what = 1;
+                message.obj = bannerList;
+                handler.sendMessage(message);
+            }
+        });
+    }
+    public static void getLookThroughCartoon(String userId,final Handler handler){
+        RequestBody requestBody = new FormBody.Builder()
+                .add("userId",userId)
+                .build();
+
+        HttpUtil.sendHttpRequestPost("/getLookThroughCartoon",requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                String result = response.body().string();
+                List<Cartoon> bannerList = gson.fromJson(result,new TypeToken<List<Cartoon>>(){}.getType());
+                Message message = new Message();
+                message.what = 1;
+                message.obj = bannerList;
+                handler.sendMessage(message);
+            }
+        });
+    }
+    public static void getRemarkCartoon(String userId,final Handler handler){
+        RequestBody requestBody = new FormBody.Builder()
+                .add("userId",userId)
+                .build();
+
+        HttpUtil.sendHttpRequestPost("/getRemarkCartoon",requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                String result = response.body().string();
+                List<Cartoon> bannerList = gson.fromJson(result,new TypeToken<List<Cartoon>>(){}.getType());
+                Message message = new Message();
+                message.what = 1;
+                message.obj = bannerList;
+                handler.sendMessage(message);
+            }
+        });
+    }
+
+
 }

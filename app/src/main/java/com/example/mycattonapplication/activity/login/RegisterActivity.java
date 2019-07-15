@@ -34,8 +34,7 @@ public class RegisterActivity extends MyActivity implements View.OnClickListener
                     system_check_num = (String)msg.obj;
                     break;
                 case 2:
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    finish();
                     break;
             }
         }
@@ -51,11 +50,11 @@ public class RegisterActivity extends MyActivity implements View.OnClickListener
     }
 
     public void init_view(){
-        edit_tel = (EditText)findViewById(R.id.register_edit_tel);
-        edit_pwd = (EditText)findViewById(R.id.register_edit_pwd);
-        check_num = (EditText)findViewById(R.id.register_check_num);
-        send_check_num = (Button)findViewById(R.id.register_send_num);
-        btn_register = (Button)findViewById(R.id.btn_register);
+        edit_tel = findViewById(R.id.register_edit_tel);
+        edit_pwd = findViewById(R.id.register_edit_pwd);
+        check_num = findViewById(R.id.register_check_num);
+        send_check_num = findViewById(R.id.register_send_num);
+        btn_register = findViewById(R.id.btn_register);
         send_check_num.setOnClickListener(this);
         btn_register.setOnClickListener(this);
     }
@@ -80,9 +79,6 @@ public class RegisterActivity extends MyActivity implements View.OnClickListener
             ShowMyToast.show(this,"手机号或密码为空");
             return;
         }
-
-
-
 
         //后台发送验证码
         UserDao.getSystemCheckNum(str_tel,handler);

@@ -24,8 +24,9 @@
             android:text="用户名"
             android:textColor="#FFFFFF"/>
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/remark_time"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="100dp"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="2019.06.14"

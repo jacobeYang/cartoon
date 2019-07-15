@@ -69,10 +69,10 @@ public class WordShowActivity extends MyActivity {
     }
 
     public void view_init(){
-        textView = (TextView)findViewById(R.id.word_show_title);
+        textView = findViewById(R.id.word_show_title);
         textView.setText("");
 
-        imageView = (ImageView)findViewById(R.id.word_show_back);
+        imageView = findViewById(R.id.word_show_back);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class WordShowActivity extends MyActivity {
         });
 
         list = new ArrayList<String>();
-        recyclerView = (AutoPollRecyclerView)findViewById(R.id.word_show_recyclerView);
+        recyclerView = findViewById(R.id.word_show_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         wordshowAdapter = new WordshowAdapter(list);
         recyclerView.setAdapter(wordshowAdapter);
@@ -94,26 +94,16 @@ public class WordShowActivity extends MyActivity {
             public void onScrollStateChanged(RecyclerView rv, int newState) {
                 super.onScrollStateChanged(rv, newState);
                 if((!rv.canScrollVertically(1))&&flag_upOr_down == 1){//传入1 判断是否到底，没到底返回true，到底返回false   传入-1代表判断是否到顶
-                    //如果到底,重新填充数据，自动播放
-                    //选择下一话
-                    if(wordTitle.getWordNumber() <=maxNum){
+                    if(wordTitle.getWordNumber() != maxNum){
                         flag = 1;
                         WordShowDao.getWordImage(wordTitle.getId(),flag,handler);
                     }
-
-
-//                    recyclerView.setAdapter(new WordshowAdapter(list));
-//                    recyclerView.start();
                 }
                 if((!rv.canScrollVertically(-1))&&flag_upOr_down == -1){
-                    Toast.makeText(WordShowActivity.this,"到顶了",Toast.LENGTH_SHORT).show();
                     if(wordTitle.getWordNumber()!=1){
                         flag = -1;
                         WordShowDao.getWordImage(wordTitle.getId(),flag,handler);
                     }
-
-//                    recyclerView.setAdapter(new WordshowAdapter(list));
-//                    recyclerView.start();
                 }
             }
 

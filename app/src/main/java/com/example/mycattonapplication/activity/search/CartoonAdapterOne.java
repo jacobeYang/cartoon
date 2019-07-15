@@ -47,11 +47,11 @@ public class CartoonAdapterOne extends RecyclerView.Adapter<CartoonAdapterOne.Ca
 
         public CartoonItemViewHolder(View itemView) {
             super(itemView);
-            cartoon_name = (TextView)itemView.findViewById(R.id.cartoon_item_one_name);
-            cartoon_author = (TextView)itemView.findViewById(R.id.cartoon_item_one_author);
-            cartoon_brief = (TextView)itemView.findViewById(R.id.cartoon_item_one_brief);
-            cartoon_item_one = (LinearLayout)itemView.findViewById(R.id.cartoon_item_one);
-            imageView = (ImageView)itemView.findViewById(R.id.cartoon_item_one_image);
+            cartoon_name = itemView.findViewById(R.id.cartoon_item_one_name);
+            cartoon_author = itemView.findViewById(R.id.cartoon_item_one_author);
+            cartoon_brief = itemView.findViewById(R.id.cartoon_item_one_brief);
+            cartoon_item_one = itemView.findViewById(R.id.cartoon_item_one);
+            imageView = itemView.findViewById(R.id.cartoon_item_one_image);
         }
     }
 
@@ -74,7 +74,7 @@ public class CartoonAdapterOne extends RecyclerView.Adapter<CartoonAdapterOne.Ca
 
     @Override
     public void onBindViewHolder( CartoonItemViewHolder holder, final int position) {
-        final Cartoon cartoon = (Cartoon) list.get(position);
+        final Cartoon cartoon = list.get(position);
         Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(holder.imageView);
         holder.cartoon_author.setText(cartoon.getAuthor().getAuthorName());
         holder.cartoon_name.setText(cartoon.getCartoonName());

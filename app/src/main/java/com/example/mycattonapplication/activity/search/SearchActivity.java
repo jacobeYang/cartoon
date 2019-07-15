@@ -60,13 +60,13 @@ public class SearchActivity extends MyActivity implements View.OnClickListener{
     }
 
     private void init_view(){
-        searchView = (SearchView)findViewById(R.id.home_search_view);
-        tv_cancle = (TextView)findViewById(R.id.home_search_cancel);
-        tv__search_cartoon_1 = (TextView)findViewById(R.id.search_cartoon_1);
-        tv__search_cartoon_2 = (TextView)findViewById(R.id.search_cartoon_2);
-        tv__search_cartoon_3 = (TextView)findViewById(R.id.search_cartoon_3);
-        tv__search_cartoon_4 = (TextView)findViewById(R.id.search_cartoon_4);
-        tv__search_cartoon_5 = (TextView)findViewById(R.id.search_cartoon_5);
+        searchView = findViewById(R.id.home_search_view);
+        tv_cancle = findViewById(R.id.home_search_cancel);
+        tv__search_cartoon_1 = findViewById(R.id.search_cartoon_1);
+        tv__search_cartoon_2 = findViewById(R.id.search_cartoon_2);
+        tv__search_cartoon_3 = findViewById(R.id.search_cartoon_3);
+        tv__search_cartoon_4 = findViewById(R.id.search_cartoon_4);
+        tv__search_cartoon_5 = findViewById(R.id.search_cartoon_5);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

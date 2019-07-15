@@ -28,7 +28,7 @@ public class WordshowAdapter extends RecyclerView.Adapter<WordshowAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView)itemView.findViewById(R.id.word_show_item_image);
+            imageView = itemView.findViewById(R.id.word_show_item_image);
         }
     }
 

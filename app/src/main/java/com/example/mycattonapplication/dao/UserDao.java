@@ -89,7 +89,7 @@ public class UserDao {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                String checkNum = gson.fromJson(response.body().string(),new TypeToken<String>(){}.getType());
+                String checkNum = gson.fromJson(response.body().string(),String.class);
                 Message message = new Message();
                 message.what = 1;
                 message.obj = checkNum;
@@ -123,7 +123,7 @@ public class UserDao {
     }
 
 
-    public static void updateUser(User user, final UserInfoActivity userInfoActivity) {
+    public static void updateUser(User user, final Handler handler) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("userName",user.getUserName())
                 .add("userAge", String.valueOf(user.getUserAge()))
@@ -142,8 +142,12 @@ public class UserDao {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 boolean flag = gson.fromJson(response.body().string(),new TypeToken<Boolean>(){}.getType());
-                if(flag)
-                ShowMyToast.show(userInfoActivity,"信息修改成功");
+                if(flag){
+                    Message message = new Message();
+                    message.what = 2;
+                    handler.sendMessage(message);
+                }
+
             }
         });
     }

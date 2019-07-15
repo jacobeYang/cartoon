@@ -267,20 +267,20 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public DetailViewHolder(View itemView) {
             super(itemView);
-            cartoon_detail_image = (ImageView)itemView.findViewById(R.id.cartoon_detail_image);
-            cartoon_detail_like = (ImageView)itemView.findViewById(R.id.cartoon_detail_like);
-            cartoon_detail_collect = (ImageView)itemView.findViewById(R.id.cartoon_detail_collect);
-            cartoon_detail_author_image = (ImageView)itemView.findViewById(R.id.cartoon_detail_author_image);
-            cartoon_detail_role1_image = (ImageView)itemView.findViewById(R.id.cartoon_detail_role1_image);
-            cartoon_detail_role2_image = (ImageView)itemView.findViewById(R.id.cartoon_detail_role2_image);
+            cartoon_detail_image = itemView.findViewById(R.id.cartoon_detail_image);
+            cartoon_detail_like = itemView.findViewById(R.id.cartoon_detail_like);
+            cartoon_detail_collect = itemView.findViewById(R.id.cartoon_detail_collect);
+            cartoon_detail_author_image = itemView.findViewById(R.id.cartoon_detail_author_image);
+            cartoon_detail_role1_image = itemView.findViewById(R.id.cartoon_detail_role1_image);
+            cartoon_detail_role2_image = itemView.findViewById(R.id.cartoon_detail_role2_image);
 
-            cartoon_detail_cartoon_name = (TextView)itemView.findViewById(R.id.cartoon_detail_cartoon_name);
-            cartoon_detail_brief = (TextView)itemView.findViewById(R.id.cartoon_detail_brief_introduction);
-            cartoon_detail_author_name = (TextView)itemView.findViewById(R.id.cartoon_detail_author_name);
-            cartoon_detail_role1_name = (TextView)itemView.findViewById(R.id.cartoon_detail_role1_name);
-            cartoon_detail_role2_name = (TextView)itemView.findViewById(R.id.cartoon_detail_role2_name);
-            detail_item_like_text = (TextView)itemView.findViewById(R.id.detail_item_like_text);
-            detail_item_collect_text = (TextView)itemView.findViewById(R.id.cartoon_detail_collect_text);
+            cartoon_detail_cartoon_name = itemView.findViewById(R.id.cartoon_detail_cartoon_name);
+            cartoon_detail_brief = itemView.findViewById(R.id.cartoon_detail_brief_introduction);
+            cartoon_detail_author_name = itemView.findViewById(R.id.cartoon_detail_author_name);
+            cartoon_detail_role1_name = itemView.findViewById(R.id.cartoon_detail_role1_name);
+            cartoon_detail_role2_name = itemView.findViewById(R.id.cartoon_detail_role2_name);
+            detail_item_like_text = itemView.findViewById(R.id.detail_item_like_text);
+            detail_item_collect_text = itemView.findViewById(R.id.cartoon_detail_collect_text);
         }
     }
 
@@ -289,7 +289,7 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public RemarkRecyclerViewHolder(View itemView) {
             super(itemView);
-            remarkRecyclerView = (RecyclerView)itemView.findViewById(R.id.remark_recycler_view);
+            remarkRecyclerView = itemView.findViewById(R.id.remark_recycler_view);
         }
     }
 
@@ -302,9 +302,9 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
         public RemarkInputViewHolder(View itemView) {
             super(itemView);
             remark_input = (EditText)itemView.findViewById(R.id.remark_input);
-            up = (ImageView)itemView.findViewById(R.id.remark_input_up);
-            down = (ImageView)itemView.findViewById(R.id.remark_input_down);
-            cartoon_detail_update_msg =(TextView)itemView.findViewById(R.id.cartoon_detail_update_msg);
+            up = itemView.findViewById(R.id.remark_input_up);
+            down = itemView.findViewById(R.id.remark_input_down);
+            cartoon_detail_update_msg = itemView.findViewById(R.id.cartoon_detail_update_msg);
 
         }
     }
@@ -314,7 +314,7 @@ public class CartoonDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
         private RecyclerView wordTitleRecyclerView;
         public WordTitleRecyclerViewHolder(View itemView) {
             super(itemView);
-            wordTitleRecyclerView = (RecyclerView)itemView.findViewById(R.id.word_title_recycle_view);
+            wordTitleRecyclerView = itemView.findViewById(R.id.word_title_recycle_view);
         }
     }
 

@@ -63,9 +63,9 @@ public class WordTitleRecyclerViewAdapter extends RecyclerView.Adapter<WordTitle
         private LinearLayout linearLayout;
         public ViewHolder(View itemView) {
             super(itemView);
-            word_name = (TextView)itemView.findViewById(R.id.world_item_name);
-            word_number = (TextView)itemView.findViewById(R.id.world_item_number);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.word_title_item);
+            word_name = itemView.findViewById(R.id.world_item_name);
+            word_number = itemView.findViewById(R.id.world_item_number);
+            linearLayout = itemView.findViewById(R.id.word_title_item);
         }
     }
 }

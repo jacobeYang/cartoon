@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:id="@+id/main_bottom_layout"
     android:layout_alignParentBottom="true"
     android:gravity="center_vertical"
@@ -15,10 +15,10 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/iv_home"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/home" />
 
         <TextView
@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="首页"
+            android:textSize="10dp"
             android:textColor="@color/my_primary"
             android:textStyle="bold" />
     </LinearLayout>
@@ -40,10 +41,10 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/iv_collection"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/collectionwhite" />
 
         <TextView
@@ -52,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="收藏"
+            android:textSize="10dp"
             android:textColor="@color/my_primary_white"
             android:textStyle="bold" />
     </LinearLayout>
@@ -65,10 +67,10 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/iv_my"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/minewhite" />
 
         <TextView
@@ -77,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="我的"
+            android:textSize="10dp"
             android:textColor="@color/my_primary_white"
             android:textStyle="bold" />
     </LinearLayout>

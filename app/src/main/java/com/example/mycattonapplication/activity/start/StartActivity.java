@@ -1,11 +1,8 @@
 package com.example.mycattonapplication.activity.start;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.home.MainActivity;
@@ -36,9 +33,11 @@ public class StartActivity extends MyActivity {
                 if(flag_login){
                     Intent intent = new Intent(StartActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }else{
                     Intent intent = new Intent(StartActivity.this, LoginActivity.class);
                     startActivity(intent);
+                    finish();
                 }
 
             }

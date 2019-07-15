@@ -69,20 +69,26 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        UserDao.getUserById(preferences.getString("userId","0"),handler);
+    }
+
     public void init_view(){
         preferences = getDefaultSharedPreferences(context);
         editor = preferences.edit();
 
-        user_image = (ImageView)view.findViewById(R.id.mine_user_image);
-        user_name = (TextView)view.findViewById(R.id.mine_user_name);
-        user_autograph = (TextView)view.findViewById(R.id.mine_user_autograph);
+        user_image = view.findViewById(R.id.mine_user_image);
+        user_name = view.findViewById(R.id.mine_user_name);
+        user_autograph = view.findViewById(R.id.mine_user_autograph);
 
-        mine_like = (LinearLayout)view.findViewById(R.id.mine_like);
-        mine_look_through = (LinearLayout)view.findViewById(R.id.mine_look_through);
-        mine_collect = (LinearLayout)view.findViewById(R.id.mine_collect);
-        mine_remark = (LinearLayout)view.findViewById(R.id.mine_remark);
+        mine_like = view.findViewById(R.id.mine_like);
+        mine_look_through = view.findViewById(R.id.mine_look_through);
+        mine_collect = view.findViewById(R.id.mine_collect);
+        mine_remark = view.findViewById(R.id.mine_remark);
 
-        mine_logout = (TextView)view.findViewById(R.id.mine_logout);
+        mine_logout = view.findViewById(R.id.mine_logout);
 
         user_image.setOnClickListener(this);
         mine_like.setOnClickListener(this);

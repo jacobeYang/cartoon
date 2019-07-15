@@ -39,10 +39,12 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:id="@+id/info_user_name"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="match_parent"
             android:background="@android:color/white"
-            android:textSize="20dp"
+            android:textSize="15dp"
+            android:maxLines="1"
+            android:inputType="text"
             android:text="13241443"/>
 
         <View
@@ -68,10 +70,12 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:id="@+id/info_user_sex"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:background="@android:color/white"
             android:textSize="20dp"
+            android:maxLines="1"
+            android:inputType="text"
             android:text="男"/>
 
         <View
@@ -96,11 +100,13 @@
         <EditText
             android:id="@+id/info_user_age"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:background="@android:color/white"
             android:textSize="20dp"
+            android:maxLines="1"
+            android:inputType="text"
             android:text="21"/>
 
         <View
@@ -126,12 +132,14 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:id="@+id/info_user_autograph"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:text="人心是不待风吹而自落的花"
             android:background="@android:color/white"
-            />
+            android:maxLines="1"
+            android:inputType="text"
+            android:ellipsize="end"/>
 
         <View
             android:layout_alignParentBottom="true"
@@ -149,10 +157,10 @@
             android:layout_marginLeft="60dp"
             android:layout_alignParentLeft="true"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:text="返回"
             android:background="@drawable/button_back"/>
         <TextView
@@ -160,10 +168,10 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="60dp"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:background="@drawable/button_back"
             android:text="修改"/>
 

@@ -65,10 +65,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public CartoonItemViewHolder(View itemView) {
             super(itemView);
             cardView = (LinearLayout) itemView;
-            cartoon_name = (TextView)itemView.findViewById(R.id.cartoon_name);
-            author_name = (TextView)itemView.findViewById(R.id.author_name);
-            imageView = (ImageView)itemView.findViewById(R.id.cartoon_image);
-            ll_cartoon = (LinearLayout)itemView.findViewById(R.id.ll_cartoon);
+            cartoon_name = itemView.findViewById(R.id.cartoon_name);
+            author_name = itemView.findViewById(R.id.author_name);
+            imageView = itemView.findViewById(R.id.cartoon_image);
+            ll_cartoon = itemView.findViewById(R.id.ll_cartoon);
         }
     }
 
@@ -78,8 +78,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public HeadLineItemViewHolder(View itemView) {
             super(itemView);
-            category_name = (TextView)itemView.findViewById(R.id.headline_category_name);
-            detail = (TextView)itemView.findViewById(R.id.headline_detail);
+            category_name = itemView.findViewById(R.id.headline_category_name);
+            detail = itemView.findViewById(R.id.headline_detail);
         }
     }
 
@@ -146,7 +146,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             final Cartoon cartoon = (Cartoon) list.get(position);
             CartoonItemViewHolder cartoonItemViewHolder = (CartoonItemViewHolder)holder;
             cartoonItemViewHolder.cartoon_name.setText(cartoon.getCartoonName());
-            cartoonItemViewHolder.author_name.setText(cartoon.getAuthorId());
+            cartoonItemViewHolder.author_name.setText(cartoon.getAuthor().getAuthorName());
             Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(cartoonItemViewHolder.imageView);
             cartoonItemViewHolder.ll_cartoon.setOnClickListener(new View.OnClickListener() {
                 @Override

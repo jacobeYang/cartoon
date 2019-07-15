@@ -51,16 +51,16 @@ public class SearchResultActivity extends MyActivity {
         Intent get_intent = getIntent();
         String intent_title = get_intent.getStringExtra("name");
 
-        title = (TextView)findViewById(R.id.search_result_title);
+        title = findViewById(R.id.search_result_title);
         title.setText(intent_title);
 
-        search_result_recyclerView = (RecyclerView) findViewById(R.id.search_result_recyclerView);
+        search_result_recyclerView = findViewById(R.id.search_result_recyclerView);
         cartoonList = new ArrayList<Cartoon>();
         search_result_recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cartoonAdapterOne = new CartoonAdapterOne(cartoonList);
         search_result_recyclerView.setAdapter(cartoonAdapterOne);
 
-        search_result_back = (ImageView)findViewById(R.id.search_result_back);
+        search_result_back = findViewById(R.id.search_result_back);
         search_result_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

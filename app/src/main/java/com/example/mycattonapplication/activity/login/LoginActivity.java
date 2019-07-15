@@ -5,9 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,10 +45,10 @@ public class LoginActivity extends MyActivity implements View.OnClickListener{
         preferences = getDefaultSharedPreferences(this);
         editor = preferences.edit();
 
-        edit_tel = (EditText)findViewById(R.id.login_edit_tel);
-        edit_pwd = (EditText)findViewById(R.id.login_edit_pwd);
-        btn_login = (Button) findViewById(R.id.btn_login);
-        login_to_register = (TextView) findViewById(R.id.login_to_register);
+        edit_tel = findViewById(R.id.login_edit_tel);
+        edit_pwd = findViewById(R.id.login_edit_pwd);
+        btn_login = findViewById(R.id.btn_login);
+        login_to_register = findViewById(R.id.login_to_register);
 
         btn_login.setOnClickListener(this);
         login_to_register.setOnClickListener(this);
@@ -87,7 +85,6 @@ public class LoginActivity extends MyActivity implements View.OnClickListener{
                 switch (msg.what){
                     case 1:
                         User user = (User)msg.obj;
-                        Log.i(TAG, "handleMessage: user = "+user.getAutograph());
                         if(user == null){//判断账号密码是否存在
                             ShowMyToast.show(LoginActivity.this,"手机号或密码错误，请重试");
                             edit_tel.setText("");
@@ -100,6 +97,7 @@ public class LoginActivity extends MyActivity implements View.OnClickListener{
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("user_id", user.getId());
                                 startActivity(intent);
+                                finish();
                             }
                         }
                         break;

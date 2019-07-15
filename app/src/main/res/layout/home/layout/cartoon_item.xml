@@ -18,6 +18,7 @@
             android:id="@+id/cartoon_image"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/a1"/>
 
         <TextView

@@ -57,10 +57,10 @@ public class RemarkRecyclerViewAdapter extends RecyclerView.Adapter<RemarkRecycl
         private TextView remark_content;
         public ViewHolder(View itemView) {
             super(itemView);
-            remark_user_image = (ImageView)itemView.findViewById(R.id.remark_user_image);
-            remark_user_name = (TextView)itemView.findViewById(R.id.remark_user_name);
-            remark_time = (TextView)itemView.findViewById(R.id.remark_time);
-            remark_content = (TextView)itemView.findViewById(R.id.remark_content);
+            remark_user_image = itemView.findViewById(R.id.remark_user_image);
+            remark_user_name = itemView.findViewById(R.id.remark_user_name);
+            remark_time = itemView.findViewById(R.id.remark_time);
+            remark_content = itemView.findViewById(R.id.remark_content);
         }
     }
 }

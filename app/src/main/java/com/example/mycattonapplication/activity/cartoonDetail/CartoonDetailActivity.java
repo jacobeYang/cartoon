@@ -93,12 +93,12 @@ public class CartoonDetailActivity extends MyActivity {
         cartoonDetail = new CartoonDetail();
 
         list = new ArrayList<Object>();
-        cartoon_detail_recyclerView = (RecyclerView)findViewById(R.id.cartoon_detail_recyclerView);
+        cartoon_detail_recyclerView = findViewById(R.id.cartoon_detail_recyclerView);
         cartoon_detail_recyclerView.setLayoutManager(new LinearLayoutManager(   this));
         cartoon_detail_adapter = new CartoonDetailAdapter(list,sharedPreferences,cartoonId);
         cartoon_detail_recyclerView.setAdapter(cartoon_detail_adapter);
 
-        back = (ImageView)findViewById(R.id.cartoon_detail_back);
+        back = findViewById(R.id.cartoon_detail_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +109,7 @@ public class CartoonDetailActivity extends MyActivity {
         CartoonDao.getCartoonAndAuthor(cartoonId,handler);
         CartoonDao.getCartoonRole(cartoonId,handler);
         CartoonDao.getCartoonLikeAndCollect(sharedPreferences.getString("userId","0"),cartoonId,handler);
+        CartoonDao.addLookThrough(sharedPreferences.getString("userId","0"),cartoonId);
     }
 
 }

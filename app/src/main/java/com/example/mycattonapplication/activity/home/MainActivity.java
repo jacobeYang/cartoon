@@ -121,18 +121,18 @@ public class MainActivity extends MyActivity implements View.OnClickListener{
     private void initView() {
 
         // 底部菜单4个Linearlayout
-        this.ll_home = (LinearLayout) findViewById(R.id.ll_home);
-        this.ll_collection = (LinearLayout)findViewById(R.id.ll_collection);
-        this.ll_my = (LinearLayout)findViewById(R.id.ll_my);
+        this.ll_home = findViewById(R.id.ll_home);
+        this.ll_collection = findViewById(R.id.ll_collection);
+        this.ll_my = findViewById(R.id.ll_my);
         // 底部菜单4个ImageView
-        this.iv_home = (ImageView) findViewById(R.id.iv_home);
-        this.iv_collection = (ImageView) findViewById(R.id.iv_collection);
-        this.iv_my = (ImageView) findViewById(R.id.iv_my);
+        this.iv_home = findViewById(R.id.iv_home);
+        this.iv_collection = findViewById(R.id.iv_collection);
+        this.iv_my = findViewById(R.id.iv_my);
 
         // 底部菜单4个菜单标题
-        this.tv_home = (TextView) findViewById(R.id.tv_home);
-        this.tv_collection = (TextView) findViewById(R.id.tv_collection);
-        this.tv_my = (TextView) findViewById(R.id.tv_my);
+        this.tv_home = findViewById(R.id.tv_home);
+        this.tv_collection = findViewById(R.id.tv_collection);
+        this.tv_my = findViewById(R.id.tv_my);
 
     }
 

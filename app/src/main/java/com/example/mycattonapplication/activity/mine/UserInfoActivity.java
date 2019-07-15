@@ -2,7 +2,6 @@ package com.example.mycattonapplication.activity.mine;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +15,7 @@ import com.example.mycattonapplication.activity.MyActivity;
 import com.example.mycattonapplication.activity.cartoonDetail.GlideRoundImage;
 import com.example.mycattonapplication.dao.UserDao;
 import com.example.mycattonapplication.model.User;
+import com.example.mycattonapplication.utils.ShowMyToast;
 
 public class UserInfoActivity extends MyActivity {
     private TextView back;
@@ -40,6 +40,8 @@ public class UserInfoActivity extends MyActivity {
                     user_autograph.setText(user.getAutograph());
                     user_sex.setText(user.getSex());
                     break;
+                case 2:
+                    ShowMyToast.show(UserInfoActivity.this,"修改成功");
             }
         }
     };
@@ -54,13 +56,13 @@ public class UserInfoActivity extends MyActivity {
     }
 
     public void init_view(){
-        user_image = (ImageView)findViewById(R.id.user_info_image);
-        back = (TextView)findViewById(R.id.user_info_back);
-        update = (TextView)findViewById(R.id.user_info_update);
-        user_name = (EditText)findViewById(R.id.info_user_name);
-        user_autograph = (EditText)findViewById(R.id.info_user_autograph);
-        user_age = (EditText)findViewById(R.id.info_user_age);
-        user_sex = (EditText)findViewById(R.id.info_user_sex);
+        user_image = findViewById(R.id.user_info_image);
+        back = findViewById(R.id.user_info_back);
+        update = findViewById(R.id.user_info_update);
+        user_name = findViewById(R.id.info_user_name);
+        user_autograph = findViewById(R.id.info_user_autograph);
+        user_age = findViewById(R.id.info_user_age);
+        user_sex = findViewById(R.id.info_user_sex);
 
         String userId = getIntent().getStringExtra("userId");
         UserDao.getUserById(userId,handler);
@@ -86,7 +88,7 @@ public class UserInfoActivity extends MyActivity {
                 user.setAutograph(str_autograph);
 
                 //更新数据
-                UserDao.updateUser(user,UserInfoActivity.this);
+                UserDao.updateUser(user,handler);
 
             }
         });

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp"
+    android:layout_height="160dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/my_cartoon_item_one"
@@ -15,8 +15,9 @@
             android:layout_margin="10dp"
             android:layout_alignParentLeft="true"
             android:id="@+id/cartoon_item_one_image"
-            android:layout_width="130dp"
+            android:layout_width="110dp"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:src="@mipmap/a1"/>
 
 
@@ -52,7 +53,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp">
             <TextView
@@ -63,9 +64,9 @@
             <TextView
 
                 android:id="@+id/cartoon_item_one_brief"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:ellipsize="end"
                 android:text="阿凡达阿按实际佛iis奥if决胜巅峰加大九分裤"
                 android:textSize="@dimen/cartoon_brief"/>

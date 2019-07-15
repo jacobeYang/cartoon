@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 
 public class AutoPollRecyclerView extends RecyclerView {
 
-    private static final long delayTime= 50;//间隔多少时间后执行滚动
+    private static final long delayTime= 1;//间隔多少时间后执行滚动
     AutoPollTask autoPollTask;//滚动线程
     private boolean running; //是否正在滚动
     private boolean canRun;//是否可以自动滚动，根据数据是否超出屏幕来决定
@@ -38,7 +38,7 @@ public class AutoPollRecyclerView extends RecyclerView {
             if (recyclerView != null && recyclerView.running && recyclerView.canRun) {
                 recyclerView.scrollBy(2, 2);//注意scrollBy和scrollTo的区别
                 //延迟发送
-                recyclerView.postDelayed(recyclerView.autoPollTask, recyclerView.delayTime);
+                recyclerView.postDelayed(recyclerView.autoPollTask, delayTime);
             }
         }
     }

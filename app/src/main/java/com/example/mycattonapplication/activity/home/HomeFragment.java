@@ -22,12 +22,10 @@ import com.example.mycattonapplication.model.NotAnyMore;
 import com.example.mycattonapplication.activity.search.SearchActivity;
 import com.example.mycattonapplication.model.Cartoon;
 import com.example.mycattonapplication.model.Category;
-import com.youth.banner.Banner;
 
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
@@ -61,7 +59,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 case 3:
                     HeadLine headLine1 = new HeadLine();
                     headLine1.setName("猜你喜欢");
-                    headLine1.setMore("更多>>>");
+                    headLine1.setMore("更多—>");
                     headLine1.setCategoryId("7");
                     home.setGuessYouLike(headLine1);
 
@@ -72,7 +70,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 case 4:
                     HeadLine headLine2 = new HeadLine();
                     headLine2.setName("热门推荐");
-                    headLine2.setMore("更多>>>");
+                    headLine2.setMore("更多—>");
                     headLine2.setCategoryId("8");
                     home.setHotRecommend(headLine2);
                     List<Cartoon> hot_cartoons = (List<Cartoon>)msg.obj;
@@ -80,14 +78,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
                     HeadLine headLine3 = new HeadLine();
                     headLine3.setName("恋爱手册");
-                    headLine3.setMore("更多>>>");
+                    headLine3.setMore("更多—>");
                     headLine3.setCategoryId("5");
                     home.setCategory1(headLine3);
                     home.setCategory1Cartoon(hot_cartoons);
 
                     HeadLine headLine4 = new HeadLine();
                     headLine4.setName("异世魔神");
-                    headLine4.setMore("更多>>>");
+                    headLine4.setMore("更多—>");
                     headLine4.setCategoryId("6");
                     home.setCategory2(headLine4);
                     home.setCategory2Cartoon(hot_cartoons);
@@ -105,6 +103,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         }
     };
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home,container,false);
@@ -116,24 +115,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     public void view_init(){
         //搜索按钮
-        search = (ImageView)view.findViewById(R.id.home_search);
+        search = view.findViewById(R.id.home_search);
         search.setOnClickListener(this);
 
         //漫画列表
         home = new Home();
-        recyclerView = (RecyclerView)view.findViewById(R.id.main_recycle);
+        recyclerView = view.findViewById(R.id.main_recycle);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context,12);
         recyclerView.setLayoutManager(gridLayoutManager);
-
 
         CartoonDao.getBanner(handler);
         CategoryDao.getCategory(handler);
         CartoonDao.getGuessYouLike(sharedPreferences.getString("userId","0"),handler);
         CartoonDao.getHotRecommend(handler);
 
-
-
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        CartoonDao.getGuessYouLike(sharedPreferences.getString("userId", "0"), handler);
+//        CartoonDao.getHotRecommend(handler);
+//    }
 
     @Override
     public void onClick(View v) {

@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,9 +22,12 @@ import com.bumptech.glide.Glide;
 import com.example.mycattonapplication.R;
 import com.example.mycattonapplication.activity.cartoonDetail.CartoonDetailActivity;
 import com.example.mycattonapplication.activity.search.SearchActivity;
+import com.example.mycattonapplication.dao.UserOptionDao;
 import com.example.mycattonapplication.model.Cartoon;
 
 import java.util.List;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
 public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -29,10 +35,22 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
     private List<Object> cartoon_list = null;
     private static final int TYPE_CARTOON = 0;
     private static final int TYPE_ADD = 1;
+    SharedPreferences sharedPreferences;
+
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            int position = msg.arg1;
+            cartoon_list.remove(position);
+            CollectionCartoonAdapter.this.notifyItemRemoved(position);
+        }
+    };
 
 
     public CollectionCartoonAdapter(List<Object> cartoon_list){
         this.cartoon_list = cartoon_list;
+
     }
 
     static class CartoonViewHolder extends RecyclerView.ViewHolder{
@@ -44,11 +62,11 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
 
         public CartoonViewHolder(View itemView) {
             super(itemView);
-            cartoon_name = (TextView)itemView.findViewById(R.id.cartoon_item_one_name);
-            carton_author = (TextView)itemView.findViewById(R.id.cartoon_item_one_author);
-            imageView = (ImageView)itemView.findViewById(R.id.cartoon_item_one_image);
-            cartoon_brief = (TextView) itemView.findViewById(R.id.cartoon_item_one_brief);
-            cartoon_item_one = (LinearLayout) itemView.findViewById(R.id.cartoon_item_one);
+            cartoon_name = itemView.findViewById(R.id.cartoon_item_one_name);
+            carton_author = itemView.findViewById(R.id.cartoon_item_one_author);
+            imageView = itemView.findViewById(R.id.cartoon_item_one_image);
+            cartoon_brief = itemView.findViewById(R.id.cartoon_item_one_brief);
+            cartoon_item_one = itemView.findViewById(R.id.cartoon_item_one);
         }
     }
 
@@ -57,7 +75,7 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
 
         public AddViewHolder(View itemView) {
             super(itemView);
-            collection_add_item = (LinearLayout)itemView.findViewById(R.id.collection_add_item);
+            collection_add_item = itemView.findViewById(R.id.collection_add_item);
         }
     }
 
@@ -67,6 +85,7 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,int type) {
         if (myContext == null) {
             myContext = parent.getContext();
+            sharedPreferences = getDefaultSharedPreferences(myContext);
         }
         if(type == TYPE_CARTOON){
             View view = LayoutInflater.from(myContext).inflate(R.layout.cartoon_item_one, parent, false);
@@ -82,13 +101,15 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder,  int position) {
             Object object= cartoon_list.get(position);
+            final int i = position;
             if(object instanceof Cartoon) {
                 final Cartoon cartoon = (Cartoon)object;
                 CartoonViewHolder cartoonViewHolder = (CartoonViewHolder) holder;
                 cartoonViewHolder.cartoon_name.setText(cartoon.getCartoonName());
                 cartoonViewHolder.carton_author.setText(cartoon.getAuthor().getAuthorName());
+                cartoonViewHolder.cartoon_brief.setText(cartoon.getBriefIntroduction());
                 Glide.with(myContext).load(cartoon.getImageId()).centerCrop().into(cartoonViewHolder.imageView);
                 cartoonViewHolder.cartoon_item_one.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -102,7 +123,7 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
                 cartoonViewHolder.cartoon_item_one.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        showNormalDialog();
+                        showNormalDialog(cartoon.getId(),i);
                         return true;
                     }
                 });
@@ -133,7 +154,7 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    private void showNormalDialog(){
+    private void showNormalDialog(final String cartoonId,final int position){
         /* @setIcon 设置对话框图标
          * @setTitle 设置对话框标题
          * @setMessage 设置对话框消息提示
@@ -148,6 +169,7 @@ public class CollectionCartoonAdapter extends RecyclerView.Adapter<RecyclerView.
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        UserOptionDao.removeCollection(sharedPreferences.getString("userId","0"),cartoonId,position,handler);
                         //...To-do
                     }
                 });
